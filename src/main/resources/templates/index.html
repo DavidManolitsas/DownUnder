@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
     <title>Down Under</title>
-    <link rel="stylesheet" href="application.css">
+
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
 
@@ -112,8 +114,7 @@
         <h2>Victoria</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            Capital City: Melbourne
-<!--            <img src="" alt="Melbourne">-->
+            <p th:text="'Capital City: ' + ${melbourne}"></p>
         </div>
     </div>
 </div>
