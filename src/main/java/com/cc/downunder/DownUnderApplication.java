@@ -16,10 +16,3 @@ public class DownUnderApplication {
 
 }
 
-@Controller
-class IndexController {
-	@RequestMapping("/index")
-	public String getHomePage() {
-		return "index";
-	}
-}
