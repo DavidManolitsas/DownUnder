@@ -9,6 +9,6 @@ public class Queensland
         extends StateTerritory {
 
     public Queensland() {
-        super("Brisbane");
+        super("Brisbane", 5115500);
     }
 }

@@ -9,6 +9,6 @@ public class Victoria
         extends StateTerritory {
 
     public Victoria() {
-        super("Melbourne");
+        super("Melbourne", 6629900);
     }
 }

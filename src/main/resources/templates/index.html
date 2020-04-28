@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
     <title>Down Under</title>
 
@@ -78,7 +78,9 @@
         <h2>Northern Territory</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${northernTerritory.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${northernTerritory.getCapital()} + '&emsp;&emsp;Population: ' + ${northernTerritory.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Dawin.jpg" alt="Darwin"
+                 style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>
@@ -87,7 +89,9 @@
         <h2>Queensland</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${queensland.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${queensland.getCapital()} + '&emsp;&emsp;Population: ' + ${queensland.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Brisbane.jpg" alt="Brisbane"
+                 style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>
@@ -96,7 +100,9 @@
         <h2>New South Wales</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${newSouthWales.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${newSouthWales.getCapital()} + '&emsp;&emsp;Population: ' + ${newSouthWales.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Sydney.jpg" alt="Sydney"
+                 style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>
@@ -105,7 +111,9 @@
         <h2>Australian Capital Territory</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${australianCapitalTerritory.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${australianCapitalTerritory.getCapital()} + '&emsp;&emsp;Population: ' + ${australianCapitalTerritory.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Canberra.jpg" alt="Canberra"
+                 style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>
@@ -114,7 +122,9 @@
         <h2>Victoria</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${victoria.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${victoria.getCapital()} + '&emsp;&emsp;Population: ' + ${victoria.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Melbourne.jpg"
+                 alt="The City of Melbourne" style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>
@@ -123,7 +133,9 @@
         <h2>South Australia</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${southAustralia.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${southAustralia.getCapital()} + '&emsp;&emsp;Population: ' + ${southAustralia.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Adelaide.jpg" alt="Adelaide"
+                 style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>
@@ -132,16 +144,20 @@
         <h2>Western Australia</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${westernAustralia.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${westernAustralia.getCapital()} + '&emsp;&emsp;Population: ' + ${westernAustralia.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Perth.jpg" alt="Perth"
+                 style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>
 <div id="TAS" class="overlay">
     <div class="popup">
-        <h2>Western Australia</h2>
+        <h2>Tasmania</h2>
         <a class="close" href="">&times;</a>
         <div class="content">
-            <p th:text="'Capital City: ' + ${tasmania.getCapital()}"></p>
+            <p th:text="'Capital City: ' + ${tasmania.getCapital()} + '&emsp;&emsp;Population: ' + ${tasmania.getPopulation()}"></p>
+            <img src="https://storage.cloud.google.com/firm-star-270108.appspot.com/Hobart.jpg" alt="Hobart"
+                 style="float:left;width:500px;height:250px;">
         </div>
     </div>
 </div>

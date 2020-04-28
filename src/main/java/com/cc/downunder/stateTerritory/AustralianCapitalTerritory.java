@@ -9,7 +9,6 @@ public class AustralianCapitalTerritory
         extends StateTerritory {
 
     public AustralianCapitalTerritory() {
-        super("Canberra");
+        super("Canberra", 428100);
     }
-
 }

@@ -9,6 +9,6 @@ public class NorthernTerritory
         extends StateTerritory {
 
     public NorthernTerritory() {
-        super("Darwin");
+        super("Darwin", 245600);
     }
 }

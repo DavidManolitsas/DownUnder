@@ -9,6 +9,6 @@ public class SouthAustralia
         extends StateTerritory {
 
     public SouthAustralia() {
-        super("Adelaide");
+        super("Adelaide", 1756500);
     }
 }

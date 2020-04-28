@@ -9,6 +9,6 @@ public class Tasmania
         extends StateTerritory {
 
     public Tasmania() {
-        super("Hobart");
+        super("Hobart", 535500);
     }
 }

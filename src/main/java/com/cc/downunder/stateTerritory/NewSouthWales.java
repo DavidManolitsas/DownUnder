@@ -9,6 +9,6 @@ public class NewSouthWales
         extends StateTerritory {
 
     public NewSouthWales() {
-        super("Sydney");
+        super("Sydney", 8118000);
     }
 }

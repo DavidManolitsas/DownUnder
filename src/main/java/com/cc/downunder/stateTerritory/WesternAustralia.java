@@ -9,6 +9,6 @@ public class WesternAustralia
         extends StateTerritory {
 
     public WesternAustralia() {
-        super("Perth");
+        super("Perth", 2630600);
     }
 }
