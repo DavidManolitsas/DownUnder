@@ -10,5 +10,6 @@ public class NewSouthWales
 
     public NewSouthWales() {
         super("Sydney", 8118000);
+        createEntity("New South Wales", getCapital(), getPopulation());
     }
 }

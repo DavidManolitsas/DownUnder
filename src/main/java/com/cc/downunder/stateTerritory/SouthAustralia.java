@@ -10,5 +10,6 @@ public class SouthAustralia
 
     public SouthAustralia() {
         super("Adelaide", 1756500);
+        createEntity("South Australia", getCapital(), getPopulation());
     }
 }

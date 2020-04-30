@@ -1,5 +1,7 @@
 package com.cc.downunder.stateTerritory;
 
+import com.cc.downunder.datastore.CreateEntity;
+
 /**
  * @author David Manolitsas
  * @project downunder
@@ -22,5 +24,11 @@ public abstract class StateTerritory {
 
     public int getPopulation() {
         return population;
+    }
+
+    public void createEntity(String state, String capital, int population) {
+        CreateEntity createEntity = new CreateEntity();
+        createEntity.createStateEntity(state, capital, population);
+
     }
 }

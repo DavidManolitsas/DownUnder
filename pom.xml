@@ -8,6 +8,8 @@
 		<version>2.2.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+
 	<groupId>com.cc</groupId>
 	<artifactId>downunder</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -17,6 +19,20 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
+	<!--Spring cloud gcp: https://spring.io/projects/spring-cloud-gcp-->
+	<dependencyManagement>
+		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-gcp-dependencies</artifactId>
+				<version>1.2.2.RELEASE</version>
+				<type>pom</type>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 
@@ -44,6 +60,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<!--datastore -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-data-datastore</artifactId>
+			<version>1.2.2.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

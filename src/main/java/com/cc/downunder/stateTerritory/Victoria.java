@@ -10,5 +10,6 @@ public class Victoria
 
     public Victoria() {
         super("Melbourne", 6629900);
+        createEntity("Victoria", getCapital(), getPopulation());
     }
 }

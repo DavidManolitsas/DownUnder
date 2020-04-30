@@ -10,5 +10,6 @@ public class WesternAustralia
 
     public WesternAustralia() {
         super("Perth", 2630600);
+        createEntity("Western Australia", getCapital(), getPopulation());
     }
 }

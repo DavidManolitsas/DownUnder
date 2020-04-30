@@ -10,5 +10,6 @@ public class Tasmania
 
     public Tasmania() {
         super("Hobart", 535500);
+        createEntity("Tasmania", getCapital(), getPopulation());
     }
 }

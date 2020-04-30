@@ -10,5 +10,8 @@ public class AustralianCapitalTerritory
 
     public AustralianCapitalTerritory() {
         super("Canberra", 428100);
+        createEntity("Australian Capital Territory", getCapital(), getPopulation());
     }
+
+
 }

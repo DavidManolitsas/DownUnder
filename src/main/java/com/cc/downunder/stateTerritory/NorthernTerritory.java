@@ -10,5 +10,6 @@ public class NorthernTerritory
 
     public NorthernTerritory() {
         super("Darwin", 245600);
+        createEntity("Northern Territory", getCapital(), getPopulation());
     }
 }
