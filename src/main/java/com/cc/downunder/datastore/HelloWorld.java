@@ -13,14 +13,29 @@ import com.google.cloud.bigtable.data.v2.models.RowCell;
 import com.google.cloud.bigtable.data.v2.models.RowMutation;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class HelloWorld {
     private final String tableId;
     private final BigtableDataClient dataClient;
     private final BigtableTableAdminClient adminClient;
 
-    public HelloWorld(String projectId, String instanceId, String tableId) throws IOException {
+    private String columnFamily;
+    private String columnQualifier;
+    private String rowKey;
+    private Map<String, Double> map;
+//    private static final String COLUMN_FAMILY = "age";
+//    private static final String COLUMN_QUALIFIER = "greeting";
+//    private static final String ROW_KEY_PREFIX = "rowKey";
+
+    public HelloWorld(String projectId, String instanceId, String tableId, String columnFamily, String columnQualifier, Map<String, Double> map) throws IOException {
         this.tableId = tableId;
+        this.map = map;
+        this.columnFamily = columnFamily;
+
+//        this.rowKey =
+        this.columnQualifier = columnQualifier;
+
 
         // [START bigtable_hw_connect_veneer]
         // Creates the settings to configure a bigtable data client.
@@ -42,11 +57,12 @@ public class HelloWorld {
         // [END bigtable_hw_connect_veneer]
     }
 
+
     public void run() throws Exception {
         createTable();
         writeToTable();
 //        readSingleRow();
-//        readTable();
+        readTable();
 //        deleteTable();
         dataClient.close();
         adminClient.close();
@@ -61,7 +77,7 @@ public class HelloWorld {
         if (!adminClient.exists(tableId)) {
             System.out.println("Creating table: " + tableId);
             CreateTableRequest createTableRequest =
-                    CreateTableRequest.of(tableId).addFamily(WriteBigTable.COLUMN_FAMILY);
+                    CreateTableRequest.of(tableId).addFamily(columnFamily);
             adminClient.createTable(createTableRequest);
             System.out.printf("Table %s created successfully%n", tableId);
         }
@@ -74,16 +90,21 @@ public class HelloWorld {
     public void writeToTable() {
         // [START bigtable_hw_write_rows_veneer]
         try {
-            System.out.println("\nWriting some greetings to the table");
+//            System.out.println("\nWriting some greetings to the table");
 //            String[] greetings = {"Hello World!", "Hello Bigtable!", "Hello Java!"};
 
-            int[] greetings = {0, 1, 2, 3, 4, 5, 6, 7};
-            for (int i = 0; i < greetings.length; i++) {
+//            int[] greetings = {0, 1, 2, 3, 4, 5, 6, 7};
+            for (Map.Entry<String, Double> entry : map.entrySet()) {
+                String key = entry.getKey();
+                Double value = entry.getValue();
+                // ...
+//            }
+//            for (int i = 0; i < greetings.length; i++) {
                 RowMutation rowMutation =
-                        RowMutation.create(tableId, WriteBigTable.ROW_KEY_PREFIX + i)
-                                .setCell(WriteBigTable.COLUMN_FAMILY, WriteBigTable.COLUMN_QUALIFIER, Integer.toString(greetings[i]));
+                        RowMutation.create(tableId, key)
+                                .setCell(columnFamily, columnQualifier, Double.toString(value));
                 dataClient.mutateRow(rowMutation);
-                System.out.println(greetings[i]);
+//                System.out.println(greetings[i]);
             }
         } catch (NotFoundException e) {
             System.err.println("Failed to write to non-existent table: " + e.getMessage());
@@ -94,22 +115,22 @@ public class HelloWorld {
     /**
      * Demonstrates how to read a single row from a table.
      */
-    public void readSingleRow() {
-        // [START bigtable_hw_get_by_key_veneer]
-        try {
-            System.out.println("\nReading a single row by row key");
-            Row row = dataClient.readRow(tableId, WriteBigTable.ROW_KEY_PREFIX + 0);
-            System.out.println("Row: " + row.getKey().toStringUtf8());
-            for (RowCell cell : row.getCells()) {
-                System.out.printf(
-                        "Family: %s    Qualifier: %s    Value: %s%n",
-                        cell.getFamily(), cell.getQualifier().toStringUtf8(), cell.getValue().toStringUtf8());
-            }
-        } catch (NotFoundException e) {
-            System.err.println("Failed to read from a non-existent table: " + e.getMessage());
-        }
-        // [END bigtable_hw_get_by_key_veneer]
-    }
+//    public void readSingleRow() {
+//        // [START bigtable_hw_get_by_key_veneer]
+//        try {
+//            System.out.println("\nReading a single row by row key");
+//            Row row = dataClient.readRow(tableId, ROW_KEY_PREFIX + 0);
+//            System.out.println("Row: " + row.getKey().toStringUtf8());
+//            for (RowCell cell : row.getCells()) {
+//                System.out.printf(
+//                        "Family: %s    Qualifier: %s    Value: %s%n",
+//                        cell.getFamily(), cell.getQualifier().toStringUtf8(), cell.getValue().toStringUtf8());
+//            }
+//        } catch (NotFoundException e) {
+//            System.err.println("Failed to read from a non-existent table: " + e.getMessage());
+//        }
+//        // [END bigtable_hw_get_by_key_veneer]
+//    }
 
     /**
      * Demonstrates how to read an entire table.
