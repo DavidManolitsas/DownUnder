@@ -1,4 +1,5 @@
-package com.cc.downunder.datastore;
+package com.cc.downunder.bigTable;
+
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
@@ -14,68 +15,72 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @Author: Jessica Cui
+ * @Project: Cloud Computing
+ * @Date: 2020/05/02
+ */
 public class ReadExcel {
+
     public static void main(String[] args) {
-        try {
-            String projectId = "s3763636-myapi";
-            String instanceId = "cc2020";
-            String tableName = "new-table";
-//            String[] states = makeMaps();
-            Map<String, Integer> columnMap = getColumnName();
-            Map<String, Double> mapNSW = null;
-            Map<String, Double> mapVIC = null;
-            for (String colName : columnMap.keySet()) {
-                if (colName.equalsIgnoreCase("age")) {
-                    mapNSW = readColData(columnMap.get(colName));
-                    HelloWorld helloWorld = new HelloWorld(projectId, instanceId, tableName, "state", "age", mapNSW);
-                    helloWorld.run();
-                } else if (colName.equalsIgnoreCase("height")) {
-                    mapVIC = readColData(columnMap.get(colName));
-                }
 
+        Map<String, Integer> columnMap = getColumnName();
+        for (String colName : columnMap.keySet()) {
+
+            if (colName.equalsIgnoreCase("NSW")) {
+                Map<String, Double> mapNSW = readColData(columnMap.get(colName));
+                writeToBigTable(mapNSW, "NSW");
+            } else if (colName.equalsIgnoreCase("VIC")) {
+                Map<String, Double> mapVIC = readColData(columnMap.get(colName));
+                writeToBigTable(mapVIC, "VIC");
+            } else if (colName.equalsIgnoreCase("SA")) {
+                Map<String, Double> mapSA = readColData(columnMap.get(colName));
+                writeToBigTable(mapSA, "SA");
+            } else if (colName.equalsIgnoreCase("WA")) {
+                Map<String, Double> mapSA = readColData(columnMap.get(colName));
+                writeToBigTable(mapSA, "WA");
+            } else if (colName.equalsIgnoreCase("TAS")) {
+                Map<String, Double> mapSA = readColData(columnMap.get(colName));
+                writeToBigTable(mapSA, "TAS");
+            } else if (colName.equalsIgnoreCase("NT")) {
+                Map<String, Double> mapNT = readColData(columnMap.get(colName));
+                writeToBigTable(mapNT, "NT");
+            } else if (colName.equalsIgnoreCase("QLD")) {
+                Map<String, Double> mapQLD = readColData(columnMap.get(colName));
+                writeToBigTable(mapQLD, "QLD");
+            } else if (colName.equalsIgnoreCase("ACT")) {
+                Map<String, Double> mapACT = readColData(columnMap.get(colName));
+                writeToBigTable(mapACT, "ACT");
+            } else if (colName.equalsIgnoreCase("OTHER")) {
+                Map<String, Double> mapOther = readColData(columnMap.get(colName));
+                writeToBigTable(mapOther, "OTHER");
+            } else if (colName.equalsIgnoreCase("TOTAL")) {
+                Map<String, Double> mapAUS = readColData(columnMap.get(colName));
+                writeToBigTable(mapAUS, "AUS");
             }
-//            System.out.println(mapVIC.size());
-//
-
-//            Iterator i = mapVIC.entrySet().iterator();
-//            while (i.hasNext()) {
-//                Map.Entry pair = (Map.Entry) i.next();
-//                System.out.println(pair.getKey() + " " + pair.getValue());
-////
-//            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-//                if (colName.equalsIgnoreCase("NSW")) {
-//                    Map<String, Double> mapNSW = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("VIC")) {
-//                    Map<String, Double> mapVIC = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("SA")) {
-//                    Map<String, Double> mapSA = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("WA")) {
-//                    Map<String, Double> mapWA = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("TAS")) {
-//                    Map<String, Double> mapTAS = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("NT")) {
-//                    Map<String, Double> mapNT = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("QLD")) {
-//                    Map<String, Double> mapQLD = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("ACT")) {
-//                    Map<String, Double> mapACT = readCol(columnMap.get(colName));
-//                } else if (colName.equalsIgnoreCase("OTHER")) {
-//                    Map<String, Double> mapOther = readCol(columnMap.get(colName));
-//                }else if (colName.equalsIgnoreCase("TOTAL")) {
-//                    Map<String, Double> mapAUS = readCol(columnMap.get(colName));
-//                }
     }
 
-//            Map<String, Double> nswMap = readCol(1);
-
+    public static void writeToBigTable(Map<String, Double> mapName, String stateName) {
+        String projectId = "s3763636-myapi";
+        String instanceId = "cc2020";
+        String tableName = "new-table";
+        try {
+            BigTable bigTable = new BigTable(projectId, instanceId, tableName, "state", stateName, mapName);
+            bigTable.run();
+        } catch (IOException e) {
+            System.out.println("line73 in readexcel");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("line76 in readexcel");
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
 
     public static Map<String, Integer> getColumnName() {
         XSSFWorkbook wb = null;
-        try (OPCPackage pkg = OPCPackage.open("./data/Student.xlsx")) {
+        try (OPCPackage pkg = OPCPackage.open("./data/Table11.xlsx")) {
             wb = new XSSFWorkbook(pkg);
             XSSFReader r = new XSSFReader(pkg);
         } catch (InvalidFormatException | IOException e) {
@@ -106,7 +111,7 @@ public class ReadExcel {
     public static HashMap<String, Double> readColData(int colIndex) {
         XSSFWorkbook wb = null;
 
-        try (OPCPackage pkg = OPCPackage.open("./data/Student.xlsx")) {
+        try (OPCPackage pkg = OPCPackage.open("./data/Table11.xlsx")) {
             wb = new XSSFWorkbook(pkg);
             XSSFReader r = new XSSFReader(pkg);
         } catch (InvalidFormatException | IOException e) {
@@ -157,7 +162,6 @@ public class ReadExcel {
             }
             map.put(dateKey, value);
         }
-//
         return map;
     }
 

@@ -1,4 +1,10 @@
-package com.cc.downunder.datastore;
+package com.cc.downunder.bigTable;
+
+/**
+ * @Author: Jessica Cui
+ * @Project: Cloud Computing
+ * @Date: 2020/05/02
+ */
 
 import com.google.api.gax.rpc.NotFoundException;
 import com.google.api.gax.rpc.ServerStream;
@@ -15,25 +21,19 @@ import com.google.cloud.bigtable.data.v2.models.RowMutation;
 import java.io.IOException;
 import java.util.Map;
 
-public class HelloWorld {
+public class BigTable {
     private final String tableId;
     private final BigtableDataClient dataClient;
     private final BigtableTableAdminClient adminClient;
 
     private String columnFamily;
     private String columnQualifier;
-    private String rowKey;
     private Map<String, Double> map;
-//    private static final String COLUMN_FAMILY = "age";
-//    private static final String COLUMN_QUALIFIER = "greeting";
-//    private static final String ROW_KEY_PREFIX = "rowKey";
 
-    public HelloWorld(String projectId, String instanceId, String tableId, String columnFamily, String columnQualifier, Map<String, Double> map) throws IOException {
+    public BigTable(String projectId, String instanceId, String tableId, String columnFamily, String columnQualifier, Map<String, Double> map) throws IOException {
         this.tableId = tableId;
         this.map = map;
         this.columnFamily = columnFamily;
-
-//        this.rowKey =
         this.columnQualifier = columnQualifier;
 
 
@@ -61,9 +61,9 @@ public class HelloWorld {
     public void run() throws Exception {
         createTable();
         writeToTable();
-//        readSingleRow();
+////        readSingleRow();
         readTable();
-//        deleteTable();
+        deleteTable();
         dataClient.close();
         adminClient.close();
     }
@@ -90,21 +90,13 @@ public class HelloWorld {
     public void writeToTable() {
         // [START bigtable_hw_write_rows_veneer]
         try {
-//            System.out.println("\nWriting some greetings to the table");
-//            String[] greetings = {"Hello World!", "Hello Bigtable!", "Hello Java!"};
-
-//            int[] greetings = {0, 1, 2, 3, 4, 5, 6, 7};
             for (Map.Entry<String, Double> entry : map.entrySet()) {
                 String key = entry.getKey();
                 Double value = entry.getValue();
-                // ...
-//            }
-//            for (int i = 0; i < greetings.length; i++) {
                 RowMutation rowMutation =
                         RowMutation.create(tableId, key)
                                 .setCell(columnFamily, columnQualifier, Double.toString(value));
                 dataClient.mutateRow(rowMutation);
-//                System.out.println(greetings[i]);
             }
         } catch (NotFoundException e) {
             System.err.println("Failed to write to non-existent table: " + e.getMessage());
