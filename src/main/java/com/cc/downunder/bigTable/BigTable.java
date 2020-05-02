@@ -21,6 +21,7 @@ import com.google.cloud.bigtable.data.v2.models.RowMutation;
 import java.io.IOException;
 import java.util.Map;
 
+// https://github.com/GoogleCloudPlatform/java-docs-samples/blob/master/bigtable/src/main/java/com/m/examples/bigtable/HelloWorld.java
 public class BigTable {
     private final String tableId;
     private final BigtableDataClient dataClient;
