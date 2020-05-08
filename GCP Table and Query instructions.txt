@@ -12,6 +12,7 @@ perhaps if instance size was a bit bigger than 1gb it may work quicker)
 
 4. create a bigquery dataset on google console (i called it australia)
 5. execute this command in terminal: but replace the path to the tableDefinition json file (i've added it to downUnder)
+        5.1 also gotta change the json file, your project name, bigtable instance name and the table name
         bq mk --external_table_definition=/Users/Jess/Documents/tableDefintion.jscsrc australia.visitors
 6. now you should be able to run Query class
         it'll print the result to console, but can also check the 'visitors' table in cloud console
