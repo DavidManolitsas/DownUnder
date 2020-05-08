@@ -64,7 +64,7 @@ public class ReadExcel {
 
     public static void writeToBigTable(Map<String, Double> mapName, String stateName) {
         String projectId = "s3763636-myapi";
-        String instanceId = "cc2020";
+        String instanceId = "s3763636v5";
         String tableName = "new-table";
         try {
             BigTable bigTable = new BigTable(projectId, instanceId, tableName, "state", stateName, mapName);

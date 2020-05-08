@@ -62,9 +62,9 @@ public class BigTable {
     public void run() throws Exception {
         createTable();
         writeToTable();
-////        readSingleRow();
+//////        readSingleRow();
         readTable();
-        deleteTable();
+//        deleteTable();
         dataClient.close();
         adminClient.close();
     }

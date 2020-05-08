@@ -1,0 +1,15 @@
+{
+  "sourceFormat": "BIGTABLE",
+  "sourceUris": [
+    "https://googleapis.com/bigtable/projects/s3763636-myapi/instances/s3763636v5/tables/new-table"
+  ],
+  "bigtableOptions": {
+    "readRowkeyAsString": true,
+    "columnFamilies": [
+      {
+        "familyId": "state",
+        "type": "STRING"
+      }
+    ]
+  }
+}

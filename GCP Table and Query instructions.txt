@@ -1,0 +1,17 @@
+1. install cbt command in terminal
+2. create an instance of bigtable on console
+    - any name
+    - i chose us central1 and zone a for the location
+    - ssd
+    -1gb (maybe try 5 or 10 ~might be faster)
+
+3. run readExcel, but remember to change the hardcoded project name and big table instance name
+(step 3 took 25 mins to run through entire file, but you can terminate it partway through for partial values.
+perhaps if instance size was a bit bigger than 1gb it may work quicker)
+    3.1 can check the table in terminal cbt read [table name] (or it'll print but you'll have to scroll and find, or wait until the very end)
+
+4. create a bigquery dataset on google console (i called it australia)
+5. execute this command in terminal: but replace the path to the tableDefinition json file (i've added it to downUnder)
+        bq mk --external_table_definition=/Users/Jess/Documents/tableDefintion.jscsrc australia.visitors
+6. now you should be able to run Query class
+        it'll print the result to console, but can also check the 'visitors' table in cloud console
