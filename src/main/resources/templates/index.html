@@ -77,8 +77,24 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${northernTerritory.getCapital()} + '&emsp;&emsp;Population: ' + ${northernTerritory.getPopulation()}"></p>
-            <img src="/img/Darwin.jpg" alt="Darwin"
-                 style="float:left;width:500px;height:250px;">
+            <img src="/img/Darwin.jpg" alt="Darwin" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+
+            <div class="month-chooser">
+                <form method="post" th:object="${ntTravelInfo}" action="?nt">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${northernTerritory}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
+
         </div>
     </div>
 </div>
@@ -88,8 +104,23 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${queensland.getCapital()} + '&emsp;&emsp;Population: ' + ${queensland.getPopulation()}"></p>
-            <img src="/img/Brisbane.jpg" alt="Brisbane"
-                 style="float:left;width:500px;height:250px;">
+            <img src="/img/Brisbane.jpg" alt="Brisbane" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+
+            <div class="month-chooser">
+                <form method="post" th:object="${qldTravelInfo}" action="?qld">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${queensland}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
         </div>
     </div>
 </div>
@@ -99,8 +130,23 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${newSouthWales.getCapital()} + '&emsp;&emsp;Population: ' + ${newSouthWales.getPopulation()}"></p>
-            <img src="/img/Sydney.jpg" alt="Sydney"
-                 style="float:left;width:500px;height:250px;">
+            <img src="/img/Sydney.jpg" alt="Sydney" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+
+            <div class="month-chooser">
+                <form method="post" th:object="${nswTravelInfo}" action="?nsw">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${newSouthWales}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
         </div>
     </div>
 </div>
@@ -110,8 +156,23 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${australianCapitalTerritory.getCapital()} + '&emsp;&emsp;Population: ' + ${australianCapitalTerritory.getPopulation()}"></p>
-            <img src="/img/Canberra.jpg" alt="Canberra"
-                 style="float:left;width:500px;height:250px;">
+            <img src="/img/Canberra.jpg" alt="Canberra" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+
+            <div class="month-chooser">
+                <form method="post" th:object="${actTravelInfo}" action="?act">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${australianCapitalTerritory}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
         </div>
     </div>
 </div>
@@ -149,7 +210,23 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${southAustralia.getCapital()} + '&emsp;&emsp;Population: ' + ${southAustralia.getPopulation()}"></p>
-            <img src="/img/Adelaide.jpg" alt="Adelaide" style="float:left;width:500px;height:250px;">
+            <img src="/img/Adelaide.jpg" alt="Adelaide" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+
+            <div class="month-chooser">
+                <form method="post" th:object="${saTravelInfo}" action="?sa">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${southAustralia}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
         </div>
 
     </div>
@@ -160,8 +237,22 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${westernAustralia.getCapital()} + '&emsp;&emsp;Population: ' + ${westernAustralia.getPopulation()}"></p>
-            <img src="/img/Perth.jpg" alt="Perth"
-                 style="float:left;width:500px;height:250px;">
+            <img src="/img/Perth.jpg" alt="Perth" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+            <div class="month-chooser">
+                <form method="post" th:object="${waTravelInfo}" action="?wa">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${westernAustralia}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
         </div>
     </div>
 </div>
@@ -171,8 +262,22 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${tasmania.getCapital()} + '&emsp;&emsp;Population: ' + ${tasmania.getPopulation()}"></p>
-            <img src="/img/Hobart.jpg" alt="Hobart"
-                 style="float:left;width:500px;height:250px;">
+            <img src="/img/Hobart.jpg" alt="Hobart" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+            <div class="month-chooser">
+                <form method="post" th:object="${tasTravelInfo}" action="?tas">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${tasmania}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
         </div>
     </div>
 </div>

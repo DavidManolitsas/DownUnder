@@ -1,5 +1,7 @@
 package com.cc.downunder.model.stateTerritory;
 
+import com.cc.downunder.model.TravelInfo;
+
 /**
  * @author David Manolitsas
  * @project downunder
@@ -10,6 +12,7 @@ public class WesternAustralia
 
     public WesternAustralia() {
         super("Perth", 2630600);
+        this.setTravelInfo(new TravelInfo(getCapital()));
         createEntity("Western Australia", getCapital(), getPopulation());
     }
 }

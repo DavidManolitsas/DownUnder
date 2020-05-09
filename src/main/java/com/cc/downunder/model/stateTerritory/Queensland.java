@@ -1,5 +1,7 @@
 package com.cc.downunder.model.stateTerritory;
 
+import com.cc.downunder.model.TravelInfo;
+
 /**
  * @author David Manolitsas
  * @project downunder
@@ -11,5 +13,6 @@ public class Queensland
     public Queensland() {
         super("Brisbane", 5115500);
         createEntity("Queensland", getCapital(), getPopulation());
+        this.setTravelInfo(new TravelInfo(getCapital()));
     }
 }
