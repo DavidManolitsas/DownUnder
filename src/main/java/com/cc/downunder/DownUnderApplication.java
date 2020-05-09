@@ -9,8 +9,6 @@ public class DownUnderApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DownUnderApplication.class, args);
-
-
     }
 
 }

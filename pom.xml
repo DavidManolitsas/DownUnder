@@ -30,6 +30,13 @@
 				<version>1.2.2.RELEASE</version>
 				<type>pom</type>
 			</dependency>
+			<dependency>
+				<groupId>com.google.cloud</groupId>
+				<artifactId>libraries-bom</artifactId>
+				<version>4.0.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>
@@ -46,6 +53,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!--test-->
@@ -95,8 +109,12 @@
             <artifactId>google-cloud-bigquery</artifactId>
             <version>1.110.1</version>
         </dependency>
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-bigquerystorage</artifactId>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
