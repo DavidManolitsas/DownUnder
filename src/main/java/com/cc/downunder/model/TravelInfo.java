@@ -7,14 +7,26 @@ package com.cc.downunder.model;
  */
 public class TravelInfo {
 
-    private Months months;
+    private String stateName;
+    private Month travelMonth;
 
-
-    public Months getMonths() {
-        return months;
+    public TravelInfo(String stateName) {
+        this.stateName = stateName;
     }
 
-    public void setMonths(Months months) {
-        this.months = months;
+
+    public String showTravelInfo() {
+        if (travelMonth != null) {
+            return "Ahh great choice! " + travelMonth.getName() + " is a perfect time to visit " + stateName;
+        }
+        return "";
+    }
+
+    public Month getTravelMonth() {
+        return travelMonth;
+    }
+
+    public void setTravelMonth(Month travelMonth) {
+        this.travelMonth = travelMonth;
     }
 }

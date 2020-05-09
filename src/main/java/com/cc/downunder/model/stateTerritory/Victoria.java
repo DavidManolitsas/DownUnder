@@ -10,14 +10,19 @@ import com.cc.downunder.model.TravelInfo;
 public class Victoria
         extends StateTerritory {
 
-    private TravelInfo info;
+    private TravelInfo travelInfo;
 
     public Victoria() {
         super("Melbourne", 6629900);
         createEntity("Victoria", getCapital(), getPopulation());
+        travelInfo = new TravelInfo(this.getClass().getSimpleName());
     }
 
-    public TravelInfo getInfo() {
-        return info;
+    public TravelInfo getTravelInfo() {
+        return travelInfo;
+    }
+
+    public void setTravelInfo(TravelInfo travelInfo) {
+        this.travelInfo = travelInfo;
     }
 }

@@ -5,7 +5,7 @@ package com.cc.downunder.model;
  * @project downunder
  * @date 2020-05-09
  */
-public enum Months {
+public enum Month {
     JAN("January"),
     FEB("February"),
     MAR("March"),
@@ -21,7 +21,7 @@ public enum Months {
 
     private final String name;
 
-    Months(String name) {
+    Month(String name) {
         this.name = name;
     }
 

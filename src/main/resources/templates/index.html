@@ -121,7 +121,25 @@
         <a class="close" href="">&times;</a>
         <div class="content">
             <p th:text="'Capital City: ' + ${victoria.getCapital()} + '&emsp;&emsp;Population: ' + ${victoria.getPopulation()}"></p>
-            <img src="/img/Melbourne.jpg" alt="The City of Melbourne" style="float:left;width:500px;height:250px;">
+            <img src="/img/Melbourne.jpg" alt="The City of Melbourne"
+                 style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
+
+            <div class="month-chooser">
+                <form method="post" th:object="${vicTravelInfo}" action="?vic">
+                    <label th:for="travelMonth">Select a Month: </label>
+                    <select th:field="*{travelMonth}">
+                        <option th:each="month : ${months}"
+                                th:text="${month.name}"
+                                th:value="${month}"></option>
+                    </select>
+                    <input type="submit" value="Show Info"/>
+                </form>
+            </div>
+
+            <div class="travel-info" th:object="${victoria}">
+                <p th:text="*{travelInfo.showTravelInfo()}"></p>
+            </div>
+
         </div>
     </div>
 </div>
