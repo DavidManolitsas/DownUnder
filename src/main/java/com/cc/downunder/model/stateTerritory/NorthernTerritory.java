@@ -12,7 +12,7 @@ public class NorthernTerritory
 
     public NorthernTerritory() {
         super("Darwin", 245600);
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "NT"));
         createEntity("Northern Territory", getCapital(), getPopulation());
     }
 }

@@ -12,7 +12,7 @@ public class Victoria
 
     public Victoria() {
         super("Melbourne", 6629900);
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "VIC"));
         createEntity("Victoria", getCapital(), getPopulation());
     }
 

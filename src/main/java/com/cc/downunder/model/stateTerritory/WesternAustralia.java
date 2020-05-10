@@ -12,7 +12,7 @@ public class WesternAustralia
 
     public WesternAustralia() {
         super("Perth", 2630600);
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "WA"));
         createEntity("Western Australia", getCapital(), getPopulation());
     }
 }

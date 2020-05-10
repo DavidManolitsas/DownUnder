@@ -12,7 +12,7 @@ public class Tasmania
 
     public Tasmania() {
         super("Hobart", 535500);
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "TAS"));
         createEntity("Tasmania", getCapital(), getPopulation());
     }
 }

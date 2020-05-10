@@ -13,6 +13,6 @@ public class Queensland
     public Queensland() {
         super("Brisbane", 5115500);
         createEntity("Queensland", getCapital(), getPopulation());
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "QLD"));
     }
 }

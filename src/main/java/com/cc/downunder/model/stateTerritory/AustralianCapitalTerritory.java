@@ -12,7 +12,7 @@ public class AustralianCapitalTerritory
 
     public AustralianCapitalTerritory() {
         super("Canberra", 428100);
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "ACT"));
         createEntity("Australian Capital Territory", getCapital(), getPopulation());
     }
 

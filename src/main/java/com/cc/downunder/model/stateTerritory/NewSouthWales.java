@@ -12,7 +12,7 @@ public class NewSouthWales
 
     public NewSouthWales() {
         super("Sydney", 8118000);
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "NSW"));
         createEntity("New South Wales", getCapital(), getPopulation());
     }
 }

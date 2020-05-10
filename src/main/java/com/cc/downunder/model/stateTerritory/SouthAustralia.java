@@ -12,7 +12,7 @@ public class SouthAustralia
 
     public SouthAustralia() {
         super("Adelaide", 1756500);
-        this.setTravelInfo(new TravelInfo(getCapital()));
+        this.setTravelInfo(new TravelInfo(getCapital(), "SA"));
         createEntity("South Australia", getCapital(), getPopulation());
 
     }
