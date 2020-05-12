@@ -20,13 +20,13 @@ public class Query {
 // Print the results.
 //
         MathContext mc = new MathContext(0);
+
+        // TODO refactor the loop
         for (FieldValueList row : bigquery.query(queryConfig).iterateAll()) {
             for (FieldValue val : row) {
                 return val.getNumericValue().setScale(0, RoundingMode.UP).toString();
-//               String string = results.toString();
-//                System.out.printf("%s,", val.toString());
             }
-//            System.out.printf("\n");
+
         }
 
         return " ";
@@ -39,8 +39,10 @@ public class Query {
         boolean deleted = bigquery.delete(tableId);
         if (deleted) {
             // the table was deleted
+            System.out.println(tableName + " was deleted");
         } else {
             // the table was not found
+            System.out.println("nope, **************** " + tableName + " was not deleted");
         }
     }
 
