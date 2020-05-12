@@ -26,26 +26,37 @@ public class TravelInfo {
      * @return
      * @throws InterruptedException
      */
-    public String showTravelInfo() {
+    public String showTravelInfo() throws InterruptedException {
         try {
             if (travelMonth != null) {
-                String result = "Ahh great choice! " + travelMonth.getName() + " is a perfect time to visit " +
-                        stateCapitalCity + getStateMonthVisitorAverage();
-                return result;
+                int month = Integer.parseInt(travelMonth.getMonthNum());
+                if (month <= 2 || month == 12) {
+                    //summer
+                    return "Nothing better than an Australian Summer! " + travelMonth.getName() +
+                            " is a perfect time to visit " + stateCapitalCity + getStateMonthVisitorAverage();
+                } else if (month < 6) {
+                    //autumn
+                    return "You just can't beat the colours of Autumn! " + travelMonth.getName() +
+                            " is a very popular time to visit " + stateCapitalCity + getStateMonthVisitorAverage();
+                } else if (month < 9) {
+                    //winter
+                    return "Brrr! Winter is Coming. " + travelMonth.getName() +
+                            " is a great time to explore the Australian Winter activities in " + stateCapitalCity +
+                            getStateMonthVisitorAverage();
+                } else if (month < 12) {
+                    //spring
+                    return "Spring. The season of rejuvenation. Some would argue there is not better time to visit " +
+                            stateCapitalCity + getStateMonthVisitorAverage();
+                }
             }
         } catch (Exception e) {
-            return "Ahh great choice! " + travelMonth.getName() + " is a perfect time to visit " + stateCapitalCity;
+            return "Sorry we can't retrieve the travel info for " + stateCapitalCity + " at the moment";
         }
         return "";
     }
 
     public String getStateMonthVisitorAverage() throws InterruptedException {
         Query query = new Query();
-//        String num = "07";
-//        if (travelMonth.getName().equalsIgnoreCase("February")) {
-//            num = "02";
-//        }
-//            int num1 = 01;
         return ".\n If you visit during " + travelMonth.getName() + ", you just might be exploring alongside " + query.queryAverages(stateName, travelMonth.getMonthNum()) + " other international visitors!";
     }
 
