@@ -22,15 +22,19 @@ public class TravelInfo {
     }
 
     /**
-     * TODO handle exception
      *
      * @return
      * @throws InterruptedException
      */
-    public String showTravelInfo() throws InterruptedException {
-        if (travelMonth != null) {
-            String result = "Ahh great choice! " + travelMonth.getName() + " is a perfect time to visit " + stateCapitalCity + getStateMonthVisitorAverage();
-            return result;
+    public String showTravelInfo() {
+        try {
+            if (travelMonth != null) {
+                String result = "Ahh great choice! " + travelMonth.getName() + " is a perfect time to visit " +
+                        stateCapitalCity + getStateMonthVisitorAverage();
+                return result;
+            }
+        } catch (Exception e) {
+            return "Ahh great choice! " + travelMonth.getName() + " is a perfect time to visit " + stateCapitalCity;
         }
         return "";
     }

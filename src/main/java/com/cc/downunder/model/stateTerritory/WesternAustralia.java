@@ -10,8 +10,8 @@ import com.cc.downunder.model.TravelInfo;
 public class WesternAustralia
         extends StateTerritory {
 
-    public WesternAustralia() {
-        super("Perth", 2630600);
+    public WesternAustralia(String capital, int population) {
+        super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "WA"));
         createEntity("Western Australia", getCapital(), getPopulation());
     }

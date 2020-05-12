@@ -10,8 +10,8 @@ import com.cc.downunder.model.TravelInfo;
 public class Tasmania
         extends StateTerritory {
 
-    public Tasmania() {
-        super("Hobart", 535500);
+    public Tasmania(String capital, int population) {
+        super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "TAS"));
         createEntity("Tasmania", getCapital(), getPopulation());
     }

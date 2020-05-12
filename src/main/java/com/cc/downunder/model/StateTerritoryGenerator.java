@@ -8,6 +8,11 @@ import com.cc.downunder.model.stateTerritory.SouthAustralia;
 import com.cc.downunder.model.stateTerritory.Tasmania;
 import com.cc.downunder.model.stateTerritory.Victoria;
 import com.cc.downunder.model.stateTerritory.WesternAustralia;
+import com.google.cloud.datastore.Datastore;
+import com.google.cloud.datastore.DatastoreOptions;
+import com.google.cloud.datastore.Entity;
+import com.google.cloud.datastore.Key;
+import com.google.cloud.datastore.KeyFactory;
 
 /**
  * @author David Manolitsas
@@ -25,10 +30,14 @@ public class StateTerritoryGenerator {
     private SouthAustralia sa;
     private WesternAustralia wa;
 
+    private Datastore datastore;
+    private KeyFactory keyFactory;
+
     private static StateTerritoryGenerator instance;
 
     private StateTerritoryGenerator() {
-
+        datastore = DatastoreOptions.getDefaultInstance().getService();
+        keyFactory = datastore.newKeyFactory().setKind("State");
     }
 
     public static StateTerritoryGenerator getInstance() {
@@ -40,56 +49,96 @@ public class StateTerritoryGenerator {
 
     public NorthernTerritory getNt() {
         if (nt == null) {
-            nt = new NorthernTerritory();
+            Key key = keyFactory.newKey("Northern Territory");
+            Entity ntEntity = datastore.get(key);
+            String capital = ntEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(ntEntity.getProperties().get("population").get().toString());
+
+            nt = new NorthernTerritory(capital, population);
         }
         return nt;
     }
 
     public Queensland getQld() {
         if (qld == null) {
-            qld = new Queensland();
+            Key key = keyFactory.newKey("Queensland");
+            Entity qldEntity = datastore.get(key);
+            String capital = qldEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(qldEntity.getProperties().get("population").get().toString());
+
+            qld = new Queensland(capital, population);
         }
         return qld;
     }
 
     public NewSouthWales getNsw() {
         if (nsw == null) {
-            nsw = new NewSouthWales();
+            Key key = keyFactory.newKey("New South Wales");
+            Entity nswEntity = datastore.get(key);
+            String capital = nswEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(nswEntity.getProperties().get("population").get().toString());
+
+            nsw = new NewSouthWales(capital, population);
         }
         return nsw;
     }
 
     public AustralianCapitalTerritory getAct() {
         if (act == null) {
-            act = new AustralianCapitalTerritory();
+            Key key = keyFactory.newKey("Australian Capital Territory");
+            Entity actEntity = datastore.get(key);
+            String capital = actEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(actEntity.getProperties().get("population").get().toString());
+
+            act = new AustralianCapitalTerritory(capital, population);
         }
         return act;
     }
 
     public Victoria getVic() {
         if (vic == null) {
-            vic = new Victoria();
+            Key key = keyFactory.newKey("Victoria");
+            Entity vicEntity = datastore.get(key);
+            String capital = vicEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(vicEntity.getProperties().get("population").get().toString());
+
+            vic = new Victoria(capital, population);
         }
         return vic;
     }
 
     public Tasmania getTas() {
         if (tas == null) {
-            tas = new Tasmania();
+            Key key = keyFactory.newKey("Tasmania");
+            Entity tasEntity = datastore.get(key);
+            String capital = tasEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(tasEntity.getProperties().get("population").get().toString());
+
+            tas = new Tasmania(capital, population);
         }
         return tas;
     }
 
     public SouthAustralia getSa() {
         if (sa == null) {
-            sa = new SouthAustralia();
+            Key key = keyFactory.newKey("South Australia");
+            Entity waEntity = datastore.get(key);
+            String capital = waEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(waEntity.getProperties().get("population").get().toString());
+
+            sa = new SouthAustralia(capital, population);
         }
         return sa;
     }
 
     public WesternAustralia getWa() {
         if (wa == null) {
-            wa = new WesternAustralia();
+            Key key = keyFactory.newKey("Western Australia");
+            Entity waEntity = datastore.get(key);
+            String capital = waEntity.getProperties().get("capital").get().toString();
+            int population = Integer.parseInt(waEntity.getProperties().get("population").get().toString());
+
+            wa = new WesternAustralia(capital, population);
         }
         return wa;
     }

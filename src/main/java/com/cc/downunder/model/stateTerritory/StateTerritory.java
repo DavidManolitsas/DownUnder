@@ -18,6 +18,7 @@ public abstract class StateTerritory {
     public StateTerritory(String capital, int population) {
         this.capital = capital;
         this.population = population;
+
     }
 
 

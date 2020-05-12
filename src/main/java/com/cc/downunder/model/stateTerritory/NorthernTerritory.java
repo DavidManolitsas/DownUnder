@@ -10,9 +10,9 @@ import com.cc.downunder.model.TravelInfo;
 public class NorthernTerritory
         extends StateTerritory {
 
-    public NorthernTerritory() {
-        super("Darwin", 245600);
+    public NorthernTerritory(String capital, int population) {
+        super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "NT"));
-        createEntity("Northern Territory", getCapital(), getPopulation());
+//        createEntity("Northern Territory", getCapital(), getPopulation());
     }
 }

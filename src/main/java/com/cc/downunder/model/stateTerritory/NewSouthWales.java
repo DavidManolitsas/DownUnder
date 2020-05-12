@@ -10,8 +10,8 @@ import com.cc.downunder.model.TravelInfo;
 public class NewSouthWales
         extends StateTerritory {
 
-    public NewSouthWales() {
-        super("Sydney", 8118000);
+    public NewSouthWales(String capital, int population) {
+        super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "NSW"));
         createEntity("New South Wales", getCapital(), getPopulation());
     }
