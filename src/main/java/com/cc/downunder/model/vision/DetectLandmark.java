@@ -83,7 +83,7 @@ public class DetectLandmark {
 
     public String getImageLocationDesc() {
         LanguageFilter filter = LanguageFilter.getInstance();
-        return filter.translateText(sb.toString());
+        return sb.toString();
     }
 
     private String saveFile(MultipartFile file) {

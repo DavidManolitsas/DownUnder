@@ -3,6 +3,8 @@ package com.cc.downunder.model;
 import com.cc.downunder.model.translate.Language;
 import com.cc.downunder.model.translate.Translate;
 
+import java.io.IOException;
+
 /**
  * @author David Manolitsas
  * @project downunder
@@ -31,7 +33,7 @@ public class LanguageFilter {
             String heading = "Welcome to the Land Down Under!";
 
             return translator.translateText(language.getCode(), heading);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Translation error");
         }
         return "";
@@ -45,25 +47,7 @@ public class LanguageFilter {
                             "major cities in Australia.";
 
             return translator.translateText(language.getCode(), welcomeMessage);
-        } catch (Exception e) {
-            System.err.println("Translation error");
-        }
-        return "";
-    }
-
-    public String getPopulationWord() {
-        try {
-            return translator.translateText(language.getCode(), "Population:");
-        } catch (Exception e) {
-            System.err.println("Translation error");
-        }
-        return "";
-    }
-
-    public String getCapitalCityWord() {
-        try {
-            return translator.translateText(language.getCode(), "Capital City: ");
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Translation error");
         }
         return "";
@@ -72,7 +56,7 @@ public class LanguageFilter {
     public String translateText(String text) {
         try {
             return translator.translateText(language.getCode(), text);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Translation error");
         }
         return "";
