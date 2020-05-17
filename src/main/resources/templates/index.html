@@ -28,6 +28,17 @@
     <p th:text="${languageFilter.getWelcomeMessage()}"></p>
 </div>
 
+<!--Region Start: File Upload-->
+<div class="image-upload">
+    <form enctype="multipart/form-data" method="post" th:object="${detectLandmark}">
+        <label for="imageFile"> Come, upload a beautiful image of where you want to go in Australia and we'll tell you where it is! </label>
+        <input accept="image/*" id="imageFile" name="imageFile" type="file"/>
+        <input type="submit" value="Upload"/>
+    </form>
+        <p th:text="*{detectLandmark.getImageLocationDesc()}"></p>
+</div>
+<!--Region End-->
+
 <!--Region Start: Map-->
 <div class="map">
     <svg version="1.2" viewbox="0 0 1000 1222" width="750" xmlns="http://www.w3.org/2000/svg">
@@ -295,14 +306,6 @@
     </div>
 </div>
 <!--Region End-->
-<!--Region Start: File Upload-->
-<div class="image-upload">
-    <form enctype="multipart/form-data" method="post">
-        <!-- <label for="image"> Come, show us your dream destination! </label> -->
-        <input accept="image/*" id="image" name="imageFile" type="file"/>
-        <input type="submit" value="Upload"/>
-    </form>
-</div>
-<!--Region End-->
+
 </body>
 </html>
