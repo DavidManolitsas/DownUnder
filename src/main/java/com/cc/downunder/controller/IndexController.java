@@ -4,12 +4,17 @@ import com.cc.downunder.model.LanguageFilter;
 import com.cc.downunder.model.Month;
 import com.cc.downunder.model.StateTerritoryGenerator;
 import com.cc.downunder.model.translate.Language;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author David Manolitsas
@@ -58,6 +63,7 @@ public class IndexController {
         //add language enum
         model.addAttribute("languages", Language.values());
 
+
         //template name not the file name (i.e no .html)
         return "index";
     }
@@ -68,6 +74,18 @@ public class IndexController {
         return "redirect:";
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String uploadImage(@RequestParam("imageFile") MultipartFile file){
+        String baseDir = "/Users/Jess/Documents/Master of IT/Workspace/DownUnder/src/main/resources/static/uploads/";
+        try {
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(baseDir + file.getOriginalFilename());
+            Files.write(path, bytes);
+        } catch (IOException e) {
+            System.out.println("could not transfer file");
+        }
+        return "redirect:";
+    }
 
     @RequestMapping(value = "", params = "nt", method = RequestMethod.POST)
     public String displayNtTravelInfo(@RequestParam Month travelMonth) {
