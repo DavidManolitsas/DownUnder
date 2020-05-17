@@ -26,18 +26,18 @@
         </form>
     </div>
     <p th:text="${languageFilter.getWelcomeMessage()}"></p>
-</div>
-
-<!--Region Start: File Upload-->
-<div class="image-upload">
-    <form enctype="multipart/form-data" method="post" th:object="${detectLandmark}">
-        <label for="imageFile"> Come, upload a beautiful image of where you want to go in Australia and we'll tell you where it is! </label>
-        <input accept="image/*" id="imageFile" name="imageFile" type="file"/>
-        <input type="submit" value="Upload"/>
-    </form>
+    <!--Region Start: File Upload-->
+    <div class="image-upload">
+        <form enctype="multipart/form-data" method="post" th:object="${detectLandmark}">
+            <label for="imageFile"
+                   th:text="${languageFilter.translateText('Come, upload a beautiful image of where you want to go in Australia and we will tell you where it is!')}"></label>
+            <input accept="image/*" id="imageFile" name="imageFile" type="file"/>
+            <input type="submit" value="Upload"/>
+        </form>
         <p th:text="*{detectLandmark.getImageLocationDesc()}"></p>
+    </div>
+    <!--Region End-->
 </div>
-<!--Region End-->
 
 <!--Region Start: Map-->
 <div class="map">
