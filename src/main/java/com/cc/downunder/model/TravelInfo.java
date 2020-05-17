@@ -1,6 +1,7 @@
 package com.cc.downunder.model;
 
 import com.cc.downunder.model.bigQuery.Query;
+
 /**
  * @author David Manolitsas
  * @project downunder
@@ -27,30 +28,36 @@ public class TravelInfo {
      * @throws InterruptedException
      */
     public String showTravelInfo() throws InterruptedException {
+        LanguageFilter filter = LanguageFilter.getInstance();
+
         try {
             if (travelMonth != null) {
                 int month = Integer.parseInt(travelMonth.getMonthNum());
                 if (month <= 2 || month == 12) {
                     //summer
-                    return "Nothing better than an Australian Summer! " + travelMonth.getName() +
-                            " is a perfect time to visit " + stateCapitalCity + getStateMonthVisitorAverage();
+                    return filter.translateText("Nothing better than an Australian Summer! " + travelMonth.getName() +
+                                                        " is a perfect time to visit " + stateCapitalCity +
+                                                        getStateMonthVisitorAverage());
                 } else if (month < 6) {
                     //autumn
-                    return "You just can't beat the colours of Autumn! " + travelMonth.getName() +
-                            " is a very popular time to visit " + stateCapitalCity + getStateMonthVisitorAverage();
+                    return filter.translateText("You just can't beat the colours of Autumn! " + travelMonth.getName() +
+                                                        " is a very popular time to visit " + stateCapitalCity +
+                                                        getStateMonthVisitorAverage());
                 } else if (month < 9) {
                     //winter
-                    return "Brrr! Winter is Coming. " + travelMonth.getName() +
+                    return filter.translateText("Brrr! Winter is Coming. " + travelMonth.getName() +
                             " is a great time to explore the Australian Winter activities in " + stateCapitalCity +
-                            getStateMonthVisitorAverage();
+                                                        getStateMonthVisitorAverage());
                 } else if (month < 12) {
                     //spring
-                    return "Spring. The season of rejuvenation. Some would argue there is not better time to visit " +
-                            stateCapitalCity + getStateMonthVisitorAverage();
+                    return filter.translateText(
+                            "Spring. The season of rejuvenation. Some would argue there is not better time to visit " +
+                                    stateCapitalCity + getStateMonthVisitorAverage());
                 }
             }
         } catch (Exception e) {
-            return "Sorry we can't retrieve the travel info for " + stateCapitalCity + " at the moment";
+            return filter.translateText(
+                    "Sorry we can't retrieve the travel info for " + stateCapitalCity + " at the moment");
         }
         return "";
     }

@@ -1,7 +1,9 @@
 package com.cc.downunder.controller;
 
+import com.cc.downunder.model.LanguageFilter;
 import com.cc.downunder.model.Month;
 import com.cc.downunder.model.StateTerritoryGenerator;
+import com.cc.downunder.model.translate.Language;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ public class IndexController {
 
     // States and Territories
     private StateTerritoryGenerator generator = StateTerritoryGenerator.getInstance();
+    private LanguageFilter languageFilter = LanguageFilter.getInstance();
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -48,12 +51,23 @@ public class IndexController {
         //Western Australia
         model.addAttribute("westernAustralia", generator.getWa());
         model.addAttribute("waTravelInfo", generator.getWa().getTravelInfo());
+
+        model.addAttribute("languageFilter", languageFilter);
         //add the month enum
         model.addAttribute("months", Month.values());
+        //add language enum
+        model.addAttribute("languages", Language.values());
 
         //template name not the file name (i.e no .html)
         return "index";
     }
+
+    @RequestMapping(value = "", params = "lang", method = RequestMethod.POST)
+    public String setLanguage(@RequestParam Language language) {
+        languageFilter.setLanguage(language);
+        return "redirect:";
+    }
+
 
     @RequestMapping(value = "", params = "nt", method = RequestMethod.POST)
     public String displayNtTravelInfo(@RequestParam Month travelMonth) {

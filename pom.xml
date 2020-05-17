@@ -125,6 +125,11 @@
             <artifactId>google-cloud-datastore</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-translate</artifactId>
+        </dependency>
+
     </dependencies>
 
 	<build>

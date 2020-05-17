@@ -1,5 +1,6 @@
 package com.cc.downunder.model.stateTerritory;
 
+import com.cc.downunder.model.LanguageFilter;
 import com.cc.downunder.model.TravelInfo;
 import com.cc.downunder.model.datastore.CreateEntity;
 
@@ -50,5 +51,11 @@ public abstract class StateTerritory {
 
     public void setTravelInfo(TravelInfo travelInfo) {
         this.travelInfo = travelInfo;
+    }
+
+    public String getDetails() {
+        LanguageFilter filter = LanguageFilter.getInstance();
+        return filter.translateText("Capital City: ") + getCapital() +
+                filter.translateText("            Population: " + getPopulation());
     }
 }
