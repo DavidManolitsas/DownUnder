@@ -12,7 +12,6 @@ import com.google.cloud.vision.v1.Image;
 import com.google.cloud.vision.v1.ImageAnnotatorClient;
 import com.google.cloud.vision.v1.ImageSource;
 import com.google.cloud.vision.v1.LocationInfo;
-import com.google.type.LatLng;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,13 +20,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
 
 public class DetectLandmark {
 
-    private StringBuilder sb = new StringBuilder();
-    private String landmarkName, landmarkLocation;
+    private StringBuilder landmarkLocation;
+    private final double NORTH_LATITUDE = -10.170768;
+    private final double EAST_LONGITUDE = 154.127632;
+    private final double SOUTH_LATITUDE = -44.105765;
+    private final double WEST_LONGITUDE = 112.665803;
+
+
+    public DetectLandmark() {
+        this.landmarkLocation = new StringBuilder();
+    }
 
     public void identifyLandmark(MultipartFile file) {
         String filePath = saveFile(file);
@@ -43,8 +49,8 @@ public class DetectLandmark {
 
     public void analyseImage(String gcsPath) {
         List<AnnotateImageRequest> requests = new ArrayList<>();
-        sb = new StringBuilder();
-        Formatter formatter = new Formatter(sb);
+        // empty string builder
+        landmarkLocation.setLength(0);
 
         ImageSource imgSource = ImageSource.newBuilder().setGcsImageUri(gcsPath).build();
         Image img = Image.newBuilder().setSource(imgSource).build();
@@ -57,33 +63,64 @@ public class DetectLandmark {
             BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
             List<AnnotateImageResponse> responses = response.getResponsesList();
 
+            String landmark = "";
+            String location = "";
+            double latitude = 0;
+            double longitude = 0;
+
             for (AnnotateImageResponse res : responses) {
                 if (res.hasError()) {
                     System.out.printf("Error: %s\n", res.getError().getMessage());
                     return;
                 }
 
+                int count = 0;
+
                 // For full list of available annotations, see http://g.co/cloud/vision/docs
                 for (EntityAnnotation annotation : res.getLandmarkAnnotationsList()) {
                     LocationInfo info = annotation.getLocationsList().listIterator().next();
-                     setImageLocationDesc(annotation.getDescription(), info.getLatLng());
+                    String description = annotation.getDescription();
 
+                    latitude = info.getLatLng().getLatitude();
+                    longitude = info.getLatLng().getLongitude();
+
+                    if (count == 0) {
+                        landmark = description;
+                    } else if (count == 1) {
+                        if (!landmark.equalsIgnoreCase(description)) {
+                            location = description;
+                        }
+                    }
+                    count++;
                 }
             }
+
+            setImageLocationDescription(landmark, location, latitude, longitude);
+
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
     }
 
-    public void setImageLocationDesc(String landmarkLocation, LatLng latLng) {
-//         sb = new StringBuilder();
-        Formatter formatter = new Formatter(sb);
-        sb.append(formatter.format("Landmark: %s\n %s\n", landmarkLocation, latLng));
+
+    public void setImageLocationDescription(String landmark, String location, double latitude, double longitude) {
+        if (!isAustralia(latitude, longitude)) {
+            landmarkLocation.append("The picture you uploaded is not a location in Australia");
+        } else if (location.trim().isEmpty()) {
+            landmarkLocation.append("The picture you uploaded is a picture of ").append(landmark);
+        } else {
+            landmarkLocation.append("The picture you uploaded is a picture of ").append(landmark).append(" located in ")
+                            .append(location);
+        }
+
     }
 
-    public String getImageLocationDesc() {
+    public String getImageLocationDescription() {
         LanguageFilter filter = LanguageFilter.getInstance();
-        return sb.toString();
+        if (landmarkLocation.length() != 0) {
+            return filter.translateText(landmarkLocation.toString());
+        }
+        return "";
     }
 
     private String saveFile(MultipartFile file) {
@@ -96,6 +133,19 @@ public class DetectLandmark {
             System.out.println(e.getMessage());
         }
         return finalPath;
+    }
+
+    private boolean isAustralia(double latitude, double longitude) {
+        // north and south boundary
+        if (latitude > NORTH_LATITUDE || latitude < SOUTH_LATITUDE) {
+            return false;
+        }
+        // east and west boundary
+        else if (longitude > EAST_LONGITUDE || longitude < WEST_LONGITUDE) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }
