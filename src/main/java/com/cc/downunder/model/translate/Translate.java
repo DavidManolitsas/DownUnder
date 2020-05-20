@@ -1,6 +1,10 @@
 package com.cc.downunder.model.translate;
 
-import com.google.cloud.translate.v3.*;
+import com.google.cloud.translate.v3.LocationName;
+import com.google.cloud.translate.v3.TranslateTextRequest;
+import com.google.cloud.translate.v3.TranslateTextResponse;
+import com.google.cloud.translate.v3.Translation;
+import com.google.cloud.translate.v3.TranslationServiceClient;
 
 import java.io.IOException;
 
@@ -10,7 +14,7 @@ import java.io.IOException;
  * @date 2020-05-17
  */
 public class Translate {
-    private final String projectID = "s3763636-myapi";
+    private final String projectID = "firm-star-270108";
 
     public Translate() {
 
