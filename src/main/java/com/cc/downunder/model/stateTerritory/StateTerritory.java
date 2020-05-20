@@ -2,7 +2,7 @@ package com.cc.downunder.model.stateTerritory;
 
 import com.cc.downunder.model.LanguageFilter;
 import com.cc.downunder.model.TravelInfo;
-import com.cc.downunder.model.datastore.CreateEntity;
+import com.cc.downunder.model.gcp.datastore.Datastore;
 
 /**
  * @author David Manolitsas
@@ -24,7 +24,7 @@ public abstract class StateTerritory {
 
 
     public void createEntity(String state, String capital, int population) {
-        CreateEntity createEntity = new CreateEntity();
+        Datastore createEntity = new Datastore();
         createEntity.createStateEntity(state, capital, population);
 
     }

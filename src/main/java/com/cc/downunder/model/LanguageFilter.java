@@ -1,7 +1,7 @@
 package com.cc.downunder.model;
 
-import com.cc.downunder.model.translate.Language;
-import com.cc.downunder.model.translate.Translate;
+import com.cc.downunder.model.gcp.translate.Language;
+import com.cc.downunder.model.gcp.translate.Translate;
 
 import java.io.IOException;
 

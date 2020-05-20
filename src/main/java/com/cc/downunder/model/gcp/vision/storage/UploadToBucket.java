@@ -1,4 +1,4 @@
-package com.cc.downunder.model.vision;
+package com.cc.downunder.model.gcp.vision.storage;
 
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 public class UploadToBucket {
     public void uploadObject(
-            String projectId, String bucketName, String objectName, String filePath)  {
+            String projectId, String bucketName, String objectName, String filePath) {
         // The ID of your GCP project
         // String projectId = "your-project-id";
 
@@ -23,18 +23,16 @@ public class UploadToBucket {
 
         // The path to your file to upload
         // String filePath = "path/to/your/file"
-try {
-    Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
-    BlobId blobId = BlobId.of(bucketName, objectName);
-    BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
-    storage.create(blobInfo, Files.readAllBytes(Paths.get(filePath)));
-} catch (IOException e) {
-    System.out.println(e.getMessage());
-}
+        try {
+            Storage storage = StorageOptions.newBuilder().setProjectId(projectId).build().getService();
+            BlobId blobId = BlobId.of(bucketName, objectName);
+            BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
+            storage.create(blobInfo, Files.readAllBytes(Paths.get(filePath)));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(
                 "File " + filePath + " uploaded to bucket " + bucketName + " as " + objectName);
     }
-
-
 
 }

@@ -1,6 +1,6 @@
 package com.cc.downunder.model;
 
-import com.cc.downunder.model.bigQuery.Query;
+import com.cc.downunder.model.gcp.bigQuery.BigQuery;
 
 /**
  * @author David Manolitsas
@@ -63,7 +63,7 @@ public class TravelInfo {
     }
 
     public String getStateMonthVisitorAverage() throws InterruptedException {
-        Query query = new Query();
+        BigQuery query = new BigQuery();
         return ".\n If you visit during " + travelMonth.getName() + ", you just might be exploring alongside " + query.queryAverages(stateName, travelMonth.getMonthNum()) + " other international visitors!";
     }
 

@@ -1,14 +1,12 @@
-package com.cc.downunder.model.bigQuery;
+package com.cc.downunder.model.gcp.bigQuery;
 
 import com.google.cloud.bigquery.*;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-public class Query {
-    BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
-    int count = 0;
-
+public class BigQuery {
+    com.google.cloud.bigquery.BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
     public String queryTable(String query, String destinationDataset, String destinationTable) throws InterruptedException {
 //        BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
         QueryJobConfiguration queryConfig =
@@ -17,8 +15,6 @@ public class Query {
                         .setDestinationTable(TableId.of(destinationDataset, destinationTable))
                         .build();
 
-// Print the results.
-//
         MathContext mc = new MathContext(0);
 
         // TODO refactor the loop
@@ -60,7 +56,7 @@ public class Query {
                 // + " AND rowkey LIKE '201%' "
                 + "AND rowkey LIKE '%" + mm + "'";
 
-        String tableName = "table" + count++;
+        String tableName = "table";
         String result = queryTable(query, "australia", tableName);
         deleteTable(tableName);
         return result;

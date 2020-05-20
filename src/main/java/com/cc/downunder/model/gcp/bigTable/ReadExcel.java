@@ -1,4 +1,4 @@
-package com.cc.downunder.model.bigTable;
+package com.cc.downunder.model.gcp.bigTable;
 
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;

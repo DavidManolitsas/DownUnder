@@ -1,6 +1,5 @@
-package com.cc.downunder.model.datastore;
+package com.cc.downunder.model.gcp.datastore;
 
-import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.Key;
@@ -15,12 +14,12 @@ import com.google.cloud.datastore.KeyFactory;
 /**
  * A snippet for Google Cloud Datastore showing how to create an entity.
  */
-public class CreateEntity {
-    Datastore datastore;
+public class Datastore {
+    com.google.cloud.datastore.Datastore datastore;
     String key, capital;
     int population;
 
-    public CreateEntity() {
+    public Datastore() {
         datastore = DatastoreOptions.getDefaultInstance().getService();
 //            this.key = key;
 //            this.capital = capital;
