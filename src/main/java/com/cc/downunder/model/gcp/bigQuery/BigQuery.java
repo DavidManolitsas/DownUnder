@@ -1,6 +1,11 @@
 package com.cc.downunder.model.gcp.bigQuery;
 
-import com.google.cloud.bigquery.*;
+import com.cc.downunder.model.gcp.GoogleCloudAccount;
+import com.google.cloud.bigquery.BigQueryOptions;
+import com.google.cloud.bigquery.FieldValue;
+import com.google.cloud.bigquery.FieldValueList;
+import com.google.cloud.bigquery.QueryJobConfiguration;
+import com.google.cloud.bigquery.TableId;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -29,9 +34,8 @@ public class BigQuery {
     }
 
     public void deleteTable(String tableName) {
-        String projectID = "s3763636-myapi";
         String datasetName = "australia";
-        TableId tableId = TableId.of(projectID, datasetName, tableName);
+        TableId tableId = TableId.of(GoogleCloudAccount.PROJECT_ID, datasetName, tableName);
         boolean deleted = bigquery.delete(tableId);
         if (deleted) {
             // the table was deleted

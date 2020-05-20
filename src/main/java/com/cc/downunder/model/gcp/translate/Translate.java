@@ -1,5 +1,6 @@
 package com.cc.downunder.model.gcp.translate;
 
+import com.cc.downunder.model.gcp.GoogleCloudAccount;
 import com.google.cloud.translate.v3.LocationName;
 import com.google.cloud.translate.v3.TranslateTextRequest;
 import com.google.cloud.translate.v3.TranslateTextResponse;
@@ -14,7 +15,7 @@ import java.io.IOException;
  * @date 2020-05-17
  */
 public class Translate {
-    private final String projectID = "firm-star-270108";
+//    private final String projectID = "firm-star-270108";
 
     public Translate() {
 
@@ -25,7 +26,7 @@ public class Translate {
             // Supported Locations: `global`, [glossary location], or [model location]
             // Glossaries must be hosted in `us-central1`
             // Custom Models must use the same location as your model. (us-central1)
-            LocationName parent = LocationName.of(projectID, "global");
+            LocationName parent = LocationName.of(GoogleCloudAccount.PROJECT_ID, "global");
 
             // Supported Mime Types: https://cloud.google.com/translate/docs/supported-formats
             TranslateTextRequest request =

@@ -1,10 +1,16 @@
 package com.cc.downunder.model.gcp.bigTable;
 
 
+import com.cc.downunder.model.gcp.GoogleCloudAccount;
+
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.eventusermodel.XSSFReader;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -64,11 +70,9 @@ public class ReadExcel {
 
     //    public void insertIntoBigTable(String projectId, String instanceId, String tableName, Map<String, Double> mapName, String stateName) {
     public static void insertIntoBigTable(Map<String, Double> mapName, String stateName) {
-        String projectId = "s3763636-myapi";
-        String instanceId = "s3763636v7";
-        String tableName = "new-table";
         try {
-            BigTable bigTable = new BigTable(projectId, instanceId, tableName, "state", stateName, mapName);
+            BigTable bigTable = new BigTable(GoogleCloudAccount.PROJECT_ID, GoogleCloudAccount.BIG_TABLE_INSTANCE_ID,
+                                             GoogleCloudAccount.BIG_TABLE_NAME, "state", stateName, mapName);
             bigTable.run();
         } catch (IOException e) {
             System.out.println(e.getMessage());

@@ -56,6 +56,6 @@ public abstract class StateTerritory {
     public String getDetails() {
         LanguageFilter filter = LanguageFilter.getInstance();
         return filter.translateText("Capital City: ") + getCapital() +
-                filter.translateText("            Population: " + getPopulation());
+                filter.translateText("Population: " + getPopulation());
     }
 }

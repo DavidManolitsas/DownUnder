@@ -1,9 +1,19 @@
 package com.cc.downunder.model.gcp.vision;
 
 import com.cc.downunder.model.LanguageFilter;
+import com.cc.downunder.model.gcp.GoogleCloudAccount;
 import com.cc.downunder.model.gcp.vision.storage.UploadToBucket;
-import com.google.cloud.vision.v1.*;
+import com.google.cloud.vision.v1.AnnotateImageRequest;
+import com.google.cloud.vision.v1.AnnotateImageResponse;
+import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
+import com.google.cloud.vision.v1.EntityAnnotation;
+import com.google.cloud.vision.v1.Feature;
+import com.google.cloud.vision.v1.Image;
+import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.cloud.vision.v1.ImageSource;
+import com.google.cloud.vision.v1.LocationInfo;
 import com.google.type.LatLng;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -16,9 +26,6 @@ import java.util.List;
 
 public class DetectLandmark {
 
-    //TODO: change to your own
-    private String projectID = "s3763636-myapi";
-    private String bucketName = "s3763636-myapi.appspot.com";
     private StringBuilder sb = new StringBuilder();
     private String landmarkName, landmarkLocation;
 
@@ -26,9 +33,10 @@ public class DetectLandmark {
         String filePath = saveFile(file);
 
         UploadToBucket bucket = new UploadToBucket();
-        bucket.uploadObject(projectID, bucketName, file.getOriginalFilename(), filePath);
+        bucket.uploadObject(GoogleCloudAccount.PROJECT_ID, GoogleCloudAccount.VISION_BUCKET_NAME,
+                            file.getOriginalFilename(), filePath);
 
-        String gcsPath = "gs://" + bucketName + "/" + file.getOriginalFilename();
+        String gcsPath = "gs://" + GoogleCloudAccount.VISION_BUCKET_NAME + "/" + file.getOriginalFilename();
         analyseImage(gcsPath);
 
     }

@@ -10,9 +10,15 @@ public enum Language {
     CHINESE_TRAD("Chinese (Traditional)", "zh-TW"),
     CHINESE_SIMP("Chinese (Simplified)", "zh-CN"),
     FRENCH("French", "fr"),
+    GERMAN("German", "de"),
     GREEK("Greek", "el"),
     JAPANESE("Japanese", "ja"),
-    SPANISH("Spanish", "es");
+    KOREAN("Korean", "ko"),
+    RUSSIAN("Russian", "ru"),
+    SPANISH("Spanish", "es"),
+    SWEDISH("Swedish", "sv"),
+    VIETNAMESE("Vietnamese", "vi");
+
 
 
     private final String name;
