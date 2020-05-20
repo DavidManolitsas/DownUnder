@@ -1,4 +1,4 @@
-package com.cc.downunder.model.translate;
+package com.cc.downunder.model.gcp.translate;
 
 /**
  * @author David Manolitsas

@@ -1,17 +1,9 @@
-package com.cc.downunder.model.vision;
+package com.cc.downunder.model.gcp.vision;
 
 import com.cc.downunder.model.LanguageFilter;
-import com.google.cloud.vision.v1.AnnotateImageRequest;
-import com.google.cloud.vision.v1.AnnotateImageResponse;
-import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
-import com.google.cloud.vision.v1.EntityAnnotation;
-import com.google.cloud.vision.v1.Feature;
-import com.google.cloud.vision.v1.Image;
-import com.google.cloud.vision.v1.ImageAnnotatorClient;
-import com.google.cloud.vision.v1.ImageSource;
-import com.google.cloud.vision.v1.LocationInfo;
+import com.cc.downunder.model.gcp.vision.storage.UploadToBucket;
+import com.google.cloud.vision.v1.*;
 import com.google.type.LatLng;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

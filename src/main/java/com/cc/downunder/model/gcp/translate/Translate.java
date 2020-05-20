@@ -1,4 +1,4 @@
-package com.cc.downunder.model.translate;
+package com.cc.downunder.model.gcp.translate;
 
 import com.google.cloud.translate.v3.LocationName;
 import com.google.cloud.translate.v3.TranslateTextRequest;

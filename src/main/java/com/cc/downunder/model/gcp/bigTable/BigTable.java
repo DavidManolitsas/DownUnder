@@ -1,4 +1,4 @@
-package com.cc.downunder.model.bigTable;
+package com.cc.downunder.model.gcp.bigTable;
 
 /**
  * @Author: Jessica Cui
