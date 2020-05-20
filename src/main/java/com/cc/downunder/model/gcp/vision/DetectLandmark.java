@@ -87,9 +87,7 @@ public class DetectLandmark {
     }
 
     private String saveFile(MultipartFile file) {
-        //TODO: change to your own path
-        String baseDir = "/Users/Jess/Documents/Master of IT/Workspace/DownUnder/src/main/resources/static/uploads/";
-        String finalPath = baseDir + file.getOriginalFilename();
+        String finalPath = GoogleCloudAccount.UPLOAD_PATH + file.getOriginalFilename();
         try {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(finalPath);
