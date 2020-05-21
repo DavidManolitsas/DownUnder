@@ -131,8 +131,8 @@
                     <button id="show-chart"> Display graph</button>
                 </form>
 
-<!--                <script th:inline="javascript">-->
-<!--                    var yearlyList = /*[[]${yearlyList}]*/ [];-->
+<!--                <script th:inline="javascript" >-->
+<!--                    var yearlyList = /*[[${yearlyList}]]*/ [];-->
 <!--                </script>-->
                 <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
                 <script type="text/javascript">
@@ -146,7 +146,7 @@
 
                         var data = google.visualization.arrayToDataTable([
                             ['month', 'Number visitors'],
-                            ['01', 8000],
+                            ['01', 23353],
                             ['02', 4000],
                             ['03', 5600],
                             ['04', 9200],
@@ -163,7 +163,7 @@
                         var classicOptions = {
                             width: 900,
 
-                            title: 'Total num vistiors',
+                            title: 'Total num visitors',
                             vAxes: {
                                 0: {title: 'num visitors'}
                             },
@@ -176,6 +176,8 @@
                         function drawClassicChart() {
                             var classicChart = new google.visualization.ColumnChart(chartDiv);
                             classicChart.draw(data, classicOptions);
+                            // testing if the array had a value
+                            // button.innerText = yearlyList[4];
                         }
 
                         button.onclick = drawClassicChart;
