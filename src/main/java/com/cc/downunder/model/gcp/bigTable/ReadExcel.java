@@ -2,15 +2,10 @@ package com.cc.downunder.model.gcp.bigTable;
 
 
 import com.cc.downunder.model.gcp.GoogleCloudAccount;
-
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.eventusermodel.XSSFReader;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -27,10 +22,10 @@ import java.util.Map;
  * @Date: 2020/05/02
  */
 public class ReadExcel {
+    private static final String PATH_TO_EXCEL_FILE ="./data/Table11.xlsx";
 
     public static void main(String[] args) {
-
-        Map<String, Integer> columnMap = getColumnName("./data/Table11.xlsx");
+        Map<String, Integer> columnMap = getColumnName(PATH_TO_EXCEL_FILE);
         for (String colName : columnMap.keySet()) {
 
             if (colName.equalsIgnoreCase("NSW")) {
@@ -68,7 +63,6 @@ public class ReadExcel {
 
     }
 
-    //    public void insertIntoBigTable(String projectId, String instanceId, String tableName, Map<String, Double> mapName, String stateName) {
     public static void insertIntoBigTable(Map<String, Double> mapName, String stateName) {
         try {
             BigTable bigTable = new BigTable(GoogleCloudAccount.PROJECT_ID, GoogleCloudAccount.BIG_TABLE_INSTANCE_ID,
@@ -94,10 +88,8 @@ public class ReadExcel {
 
         Map<String, Integer> columnNameMap = new HashMap<>();
 
-
         Sheet sheet = wb.getSheetAt(0);
         Row row = sheet.getRow(0);
-        String[] states = new String[row.getLastCellNum()];
 
         for (int i = 0; i < row.getLastCellNum(); i++) {
             if (row.getCell(i) == null) {
@@ -114,7 +106,7 @@ public class ReadExcel {
     public static HashMap<String, Double> readColData(int colIndex) {
         XSSFWorkbook wb = null;
 
-        try (OPCPackage pkg = OPCPackage.open("./data/Table11.xlsx")) {
+        try (OPCPackage pkg = OPCPackage.open(PATH_TO_EXCEL_FILE)) {
             wb = new XSSFWorkbook(pkg);
             XSSFReader r = new XSSFReader(pkg);
         } catch (InvalidFormatException | IOException e) {
@@ -138,7 +130,6 @@ public class ReadExcel {
             DateFormat df = new SimpleDateFormat("yyyy/MM");
             Date date = dateCell.getDateCellValue();
             dateKey = df.format(date);
-//            System.out.println(name);
 
             // next column
             Cell valueCell = rows.getCell(colIndex);
@@ -160,7 +151,6 @@ public class ReadExcel {
                     case STRING:
                         throw new IllegalArgumentException("This cell is string data type");
                 }
-
 
             }
             map.put(dateKey, value);

@@ -3,6 +3,7 @@ package com.cc.downunder.controller;
 import com.cc.downunder.model.LanguageFilter;
 import com.cc.downunder.model.Month;
 import com.cc.downunder.model.StateTerritoryGenerator;
+import com.cc.downunder.model.Year;
 import com.cc.downunder.model.gcp.translate.Language;
 import com.cc.downunder.model.gcp.vision.DetectLandmark;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class IndexController {
     private StateTerritoryGenerator generator = StateTerritoryGenerator.getInstance();
     private LanguageFilter languageFilter = LanguageFilter.getInstance();
     private DetectLandmark detectLandmark = new DetectLandmark();
-
+    private Year year = new Year();
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getHomePage(Model model) {
@@ -62,9 +63,17 @@ public class IndexController {
 
         model.addAttribute("detectLandmark", detectLandmark);
 
+        model.addAttribute("years", year.getYearList());
+
         //template name not the file name (i.e no .html)
         return "index";
     }
+
+//    @RequestMapping(value = "", method = RequestMethod.POST)
+//    public String setYear(RequestParam String travelYear){
+//        generator.getNsw().getTravelInfo().setTravelYear(travelYear);
+//        return "redirect:";
+//    }
 
     @RequestMapping(value = "", params = "lang", method = RequestMethod.POST)
     public String setLanguage(@RequestParam Language language) {

@@ -119,6 +119,17 @@
                 <p th:text="*{travelInfo.showTravelInfo()}"></p>
             </div>
 
+            <div class="year-chooser">
+                <form action="" method="post">
+                    <label th:for="travelYear" th:text="${languageFilter.translateText('Select a Year: ')}"></label>
+                    <select field="Travel year">
+                        <option th:each="year : ${years}"
+                                th:text="${year}"
+                                th:value="${year}"></option>
+                    </select>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

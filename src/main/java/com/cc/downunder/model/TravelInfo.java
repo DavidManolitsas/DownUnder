@@ -13,6 +13,9 @@ public class TravelInfo {
     private String stateName;
     private Month travelMonth;
 
+    private String travelYear;
+
+
     public TravelInfo(String stateCapitalCity) {
         this.stateCapitalCity = stateCapitalCity;
     }
@@ -20,6 +23,7 @@ public class TravelInfo {
     public TravelInfo(String stateCapitalCity, String stateName) {
         this.stateCapitalCity = stateCapitalCity;
         this.stateName = stateName;
+
     }
 
     /**
@@ -67,12 +71,36 @@ public class TravelInfo {
         return ".\n If you visit during " + travelMonth.getName() + ", you just might be exploring alongside " + query.queryAverages(stateName, travelMonth.getMonthNum()) + " other international visitors!";
     }
 
+    public String getStateYearlyVisitors() throws InterruptedException {
+        BigQuery query = new BigQuery();
+//        String tra
+        return query.queryAverages(stateName, travelYear);
+    }
+
+
+
+
+//    public void getYearNum(String travelYear) {
+//        int year = Integer.parseInt(travelYear);
+//
+//        for (Integer i: travelYearList) {
+//            if (i == year) {
+//                return i;
+//            }
+//        }
+//    }
+
+
     public Month getTravelMonth() {
         return travelMonth;
     }
 
     public void setTravelMonth(Month travelMonth) {
         this.travelMonth = travelMonth;
+    }
+
+    public void setTravelYear(String travelYear) {
+        this.travelYear = travelYear;
     }
 
     public String getStateCapitalCity() {

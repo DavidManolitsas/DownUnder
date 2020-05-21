@@ -2,17 +2,8 @@ package com.cc.downunder.model.gcp.vision;
 
 import com.cc.downunder.model.LanguageFilter;
 import com.cc.downunder.model.gcp.GoogleCloudAccount;
-import com.cc.downunder.model.gcp.vision.storage.UploadToBucket;
-import com.google.cloud.vision.v1.AnnotateImageRequest;
-import com.google.cloud.vision.v1.AnnotateImageResponse;
-import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
-import com.google.cloud.vision.v1.EntityAnnotation;
-import com.google.cloud.vision.v1.Feature;
-import com.google.cloud.vision.v1.Image;
-import com.google.cloud.vision.v1.ImageAnnotatorClient;
-import com.google.cloud.vision.v1.ImageSource;
-import com.google.cloud.vision.v1.LocationInfo;
-
+import com.cc.downunder.model.gcp.vision.storage.Bucket;
+import com.google.cloud.vision.v1.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -38,7 +29,7 @@ public class DetectLandmark {
     public void identifyLandmark(MultipartFile file) {
         String filePath = saveFile(file);
 
-        UploadToBucket bucket = new UploadToBucket();
+        Bucket bucket = new Bucket();
         bucket.uploadObject(GoogleCloudAccount.PROJECT_ID, GoogleCloudAccount.VISION_BUCKET_NAME,
                             file.getOriginalFilename(), filePath);
 
@@ -141,11 +132,7 @@ public class DetectLandmark {
             return false;
         }
         // east and west boundary
-        else if (longitude > EAST_LONGITUDE || longitude < WEST_LONGITUDE) {
-            return false;
-        } else {
-            return true;
-        }
+        else return !(longitude > EAST_LONGITUDE) && !(longitude < WEST_LONGITUDE);
     }
 
 }
