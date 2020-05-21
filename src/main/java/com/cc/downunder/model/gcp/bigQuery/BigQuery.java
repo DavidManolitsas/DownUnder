@@ -4,25 +4,50 @@ import com.cc.downunder.model.gcp.GoogleCloudAccount;
 import com.google.cloud.bigquery.*;
 
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BigQuery {
     com.google.cloud.bigquery.BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
+    private List<String> resultsList = new ArrayList<>();
 
-    public String queryTable(String query, String destinationDataset, String destinationTable) throws InterruptedException {
+//    public String queryTable(String query, String destinationDataset, String destinationTable) throws InterruptedException {
+//        QueryJobConfiguration queryConfig =
+//                QueryJobConfiguration.newBuilder(query)
+//                        // Save the results of the query to a permanent table.
+//                        .setDestinationTable(TableId.of(destinationDataset, destinationTable))
+//                        .build();
+//
+//        // TODO refactor the loop
+//        for (FieldValueList row : bigquery.query(queryConfig).iterateAll()) {
+//            for (FieldValue val : row) {
+//                resultsList.add(val.toString())
+//            }
+//        }
+//
+//        return " ";
+//    }
+
+    public void query(String query, String destinationDataset, String destinationTable) throws InterruptedException {
         QueryJobConfiguration queryConfig =
                 QueryJobConfiguration.newBuilder(query)
                         // Save the results of the query to a permanent table.
                         .setDestinationTable(TableId.of(destinationDataset, destinationTable))
                         .build();
 
-        // TODO refactor the loop
+
         for (FieldValueList row : bigquery.query(queryConfig).iterateAll()) {
             for (FieldValue val : row) {
-                return val.getNumericValue().setScale(0, RoundingMode.UP).toString();
+                resultsList.add(val.getNumericValue().setScale(0, RoundingMode.UP).toString());
             }
         }
 
-        return " ";
+//        return " ";
+    }
+
+    public String getAverageResult() {
+//        getNumericValue().setScale(0, RoundingMode.UP).toString();
+        return resultsList.get(0);
     }
 
     public void deleteTable(String tableName) {
@@ -30,11 +55,11 @@ public class BigQuery {
         TableId tableId = TableId.of(GoogleCloudAccount.PROJECT_ID, datasetName, tableName);
         boolean deleted = bigquery.delete(tableId);
         if (deleted) {
-            // the table was deleted
-            System.out.println(tableName + " was deleted");
+            // used for testing if the table was deleted
+//            System.out.println(tableName + " was deleted");
         } else {
-            // the table was not found
-            System.out.println("no, " + tableName + " was not deleted");
+            // used for testing if the table was not found
+//            System.out.println("no, " + tableName + " was not deleted");
         }
     }
 
@@ -51,13 +76,15 @@ public class BigQuery {
                 + "WHERE stateCol.name = '" + state + "' "
                 + "AND rowkey LIKE '%" + mm + "'  AND rowkey LIKE '20%'";
 
-        String tableName = "averageMontlyTable";
-        String result = queryTable(query, "australia", tableName);
+        String tableName = "averageMonthlyTable";
+//        String result = queryTable(query, "australia", tableName);
+        query(query, "australia", tableName);
         deleteTable(tableName);
-        return result;
+//        getAverageResult();
+        return getAverageResult();
     }
 
-    public String queryYearTotal(String state, String yyyy) throws InterruptedException {
+    public List<String> queryYearTotal(String state, String yyyy) throws InterruptedException {
         String query = "SELECT  CAST(stateCell.value AS NUMERIC) total_num_visitors_" + state + " "
                 + "FROM australia.visitors, "
                 + "UNNEST(state.column) AS stateCol, UNNEST(stateCol.cell) AS stateCell "
@@ -65,9 +92,11 @@ public class BigQuery {
                 + "AND rowkey LIKE '" + yyyy + "%'";
 
         String tableName = "totalYearTable";
-        String result = queryTable(query, "australia", tableName);
+        query(query, "australia", tableName);
         deleteTable(tableName);
-        return result;
+        return resultsList;
     }
+
+
 
 }

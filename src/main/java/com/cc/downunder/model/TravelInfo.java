@@ -2,6 +2,8 @@ package com.cc.downunder.model;
 
 import com.cc.downunder.model.gcp.bigQuery.BigQuery;
 
+import java.util.List;
+
 /**
  * @author David Manolitsas
  * @project downunder
@@ -12,7 +14,6 @@ public class TravelInfo {
     private String stateCapitalCity;
     private String stateName;
     private Month travelMonth;
-
     private String travelYear;
 
 
@@ -71,25 +72,26 @@ public class TravelInfo {
         return ".\n If you visit during " + travelMonth.getName() + ", you just might be exploring alongside " + query.queryAverages(stateName, travelMonth.getMonthNum()) + " other international visitors!";
     }
 
-    public String getStateYearlyVisitors() throws InterruptedException {
+    public String[] getStateYearlyVisitors() {
         BigQuery query = new BigQuery();
-//        String tra
-        return query.queryAverages(stateName, travelYear);
+        String[] yearArray = new String[12];
+        System.out.println("hello#####################");
+        try {
+            List<String> results = query.queryYearTotal(stateName, travelYear);
+            System.out.println("results list size: " + results.size());
+           yearArray = new String[results.size()];
+           yearArray = results.toArray(yearArray);
+            System.out.println("year array size: " + yearArray.length);
+           for (String i: yearArray) {
+               System.out.println(i);
+           }
+            System.out.println("i dunno why");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+return yearArray;
     }
-
-
-
-
-//    public void getYearNum(String travelYear) {
-//        int year = Integer.parseInt(travelYear);
-//
-//        for (Integer i: travelYearList) {
-//            if (i == year) {
-//                return i;
-//            }
-//        }
-//    }
-
 
     public Month getTravelMonth() {
         return travelMonth;
@@ -101,6 +103,10 @@ public class TravelInfo {
 
     public void setTravelYear(String travelYear) {
         this.travelYear = travelYear;
+    }
+
+    public String getTravelYear() {
+        return travelYear;
     }
 
     public String getStateCapitalCity() {

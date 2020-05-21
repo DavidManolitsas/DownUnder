@@ -65,15 +65,17 @@ public class IndexController {
 
         model.addAttribute("years", year.getYearList());
 
+
         //template name not the file name (i.e no .html)
         return "index";
     }
 
-//    @RequestMapping(value = "", method = RequestMethod.POST)
-//    public String setYear(RequestParam String travelYear){
-//        generator.getNsw().getTravelInfo().setTravelYear(travelYear);
-//        return "redirect:";
-//    }
+    @RequestMapping(value = "", params = "ntYear", method = RequestMethod.POST)
+    public String setYear(@RequestParam String travelYear, Model model){
+        generator.getNt().getTravelInfo().setTravelYear(travelYear);
+//        generator.getNt().getTravelInfo().getStateYearlyVisitors();
+        return "redirect:#NT";
+    }
 
     @RequestMapping(value = "", params = "lang", method = RequestMethod.POST)
     public String setLanguage(@RequestParam Language language) {
@@ -81,7 +83,7 @@ public class IndexController {
         return "redirect:";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "", params = "image", method = RequestMethod.POST)
     public String uploadImage(@RequestParam("imageFile") MultipartFile file){
         detectLandmark.identifyLandmark(file);
         return "redirect:";
