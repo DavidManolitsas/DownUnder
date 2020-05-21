@@ -77,6 +77,12 @@ public class IndexController {
         return "redirect:#NT";
     }
 
+    @RequestMapping(value = "", params = "ntYear", method = RequestMethod.GET)
+    public String getYear(Model model) {
+        model.addAttribute("yearlyList", generator.getNt().getTravelInfo().getStateYearlyVisitors());
+        return "#NT";
+    }
+
     @RequestMapping(value = "", params = "lang", method = RequestMethod.POST)
     public String setLanguage(@RequestParam Language language) {
         languageFilter.setLanguage(language);

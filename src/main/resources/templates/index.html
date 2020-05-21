@@ -130,6 +130,10 @@
                     </select>
                     <button id="show-chart"> Display graph</button>
                 </form>
+
+<!--                <script th:inline="javascript">-->
+<!--                    var yearlyList = /*[[]${yearlyList}]*/ [];-->
+<!--                </script>-->
                 <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
                 <script type="text/javascript">
                     google.charts.load('current', {'packages':['corechart', 'bar']});
@@ -146,7 +150,14 @@
                             ['02', 4000],
                             ['03', 5600],
                             ['04', 9200],
-                            ['05', 1300]
+                            ['05', 1300],
+                            ['06', 15430],
+                            ['07', 910],
+                            ['08', 3636],
+                            ['09', 1997],
+                            ['10', 98765],
+                            ['11', 3456],
+                            ['12', 888]
                         ]);
 
                         var classicOptions = {
