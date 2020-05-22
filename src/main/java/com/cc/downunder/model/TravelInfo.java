@@ -15,6 +15,8 @@ public class TravelInfo {
     private String stateName;
     private Month travelMonth;
     private String travelYear;
+    private String[] yearlyList = new String[13];
+
 
 
     public TravelInfo(String stateCapitalCity) {
@@ -72,25 +74,26 @@ public class TravelInfo {
         return ".\n If you visit during " + travelMonth.getName() + ", you just might be exploring alongside " + query.queryAverages(stateName, travelMonth.getMonthNum()) + " other international visitors!";
     }
 
-    public String[] getStateYearlyVisitors() {
+    public void getStateYearlyVisitors() {
         BigQuery query = new BigQuery();
-        String[] yearArray = new String[12];
+//        String[] yearArray = new String[12];
         System.out.println("hello#####################");
         try {
             List<String> results = query.queryYearTotal(stateName, travelYear);
             System.out.println("results list size: " + results.size());
-           yearArray = new String[results.size()];
-           yearArray = results.toArray(yearArray);
-            System.out.println("year array size: " + yearArray.length);
-           for (String i: yearArray) {
+            yearlyList = new String[results.size()];
+            yearlyList = results.toArray(yearlyList);
+            System.out.println("year array size: " + yearlyList.length);
+           for (String i: yearlyList) {
                System.out.println(i);
            }
+            this.yearlyList = yearlyList;
             System.out.println("i dunno why");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-return yearArray;
+
     }
 
     public Month getTravelMonth() {
@@ -103,6 +106,7 @@ return yearArray;
 
     public void setTravelYear(String travelYear) {
         this.travelYear = travelYear;
+        getStateYearlyVisitors();
     }
 
     public String getTravelYear() {
@@ -115,5 +119,16 @@ return yearArray;
 
     public void setStateCapitalCity(String stateCapitalCity) {
         this.stateCapitalCity = stateCapitalCity;
+    }
+
+    public String[] getYearlyList() {
+        if (yearlyList[0] == null) {
+            yearlyList[0] = "Year not selected yet";
+        }
+        return yearlyList;
+    }
+
+    public void setYearlyList(String[] yearlyList) {
+        this.yearlyList = yearlyList;
     }
 }

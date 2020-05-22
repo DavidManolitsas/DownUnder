@@ -94,6 +94,7 @@ public class BigQuery {
                 + "ORDER BY rowkey asc";
 
         String tableName = "totalYearTable";
+        resultsList.add(yyyy);
         query(query, "australia", tableName);
         deleteTable(tableName);
         return resultsList;

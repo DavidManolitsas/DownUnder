@@ -65,7 +65,15 @@ public class IndexController {
 
         model.addAttribute("years", year.getYearList());
 
+        model.addAttribute("yearlyList", generator.getNt().getTravelInfo().getYearlyList());
+//        List<String> list = new ArrayList<>();
+//        list.add("14124");
+//        list.add("224");
+//        list.add("974");
+//        list.add("1554");
 
+//        model.addAttribute("yearlyList", list);
+//        model.addAttribute("yearlyList", generator.getNt().getTravelInfo().getYearlyList());
         //template name not the file name (i.e no .html)
         return "index";
     }
@@ -73,16 +81,10 @@ public class IndexController {
     @RequestMapping(value = "", params = "ntYear", method = RequestMethod.POST)
     public String setYear(@RequestParam String travelYear, Model model){
         generator.getNt().getTravelInfo().setTravelYear(travelYear);
-//        generator.getNt().getTravelInfo().getStateYearlyVisitors();
-//        model.addAttribute("yearlyList",  generator.getNt().getTravelInfo().getStateYearlyVisitors());
+//model.addAttribute("yearlyList",  generator.getNt().getTravelInfo().getYearlyList());
         return "redirect:#NT";
     }
 
-//    @RequestMapping(value = "", params = "ntYear", method = RequestMethod.GET)
-//    public String getYear(Model model) {
-//        model.addAttribute("yearlyList",  generator.getNt().getTravelInfo().getStateYearlyVisitors());
-//        return "#NT";
-//    }
 
     @RequestMapping(value = "", params = "lang", method = RequestMethod.POST)
     public String setLanguage(@RequestParam Language language) {
