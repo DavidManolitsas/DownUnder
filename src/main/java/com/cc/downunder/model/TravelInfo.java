@@ -75,18 +75,10 @@ public class TravelInfo {
 
     public void getStateYearlyVisitors() {
         BigQuery query = new BigQuery();
-//        System.out.println("hello#####################");
         try {
             List<String> results = query.queryYearTotal(stateName, travelYear);
-//            System.out.println("results list size: " + results.size());
             yearlyList = new String[results.size()];
             yearlyList = results.toArray(yearlyList);
-//            System.out.println("year array size: " + yearlyList.length);
-//           for (String i: yearlyList) {
-//               System.out.println(i);
-//           }
-            this.yearlyList = yearlyList;
-//            System.out.println("i dunno why");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -4,6 +4,8 @@
     <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
     <title>Down Under</title>
     <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 </head>
 <body>
 
@@ -130,6 +132,7 @@
                                 th:value="${year}"></option>
                     </select>
                     <button id="show-chart-nt">Choose year</button>
+                    <canvas height="500" id="ntChart" width="500"></canvas>
                 </form>
 
                 <script th:inline="javascript">
@@ -137,56 +140,60 @@
                     var ntYearlyList = [[${ntYearlyList}]];
                     /*]]>*/
                 </script>
-                <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                    google.charts.load('current', {'packages': ['corechart', 'bar']});
-                    google.charts.setOnLoadCallback(drawNt);
+                <script>
+                    var ctx = document.getElementById('ntChart').getContext('2d');
+                    ctx.canvas.width  = 400;
+                    ctx.canvas.height = 400;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [ntYearlyList[1],
+                                    ntYearlyList[2],
+                                    ntYearlyList[3],
+                                    ntYearlyList[4],
+                                    ntYearlyList[5],
+                                    ntYearlyList[6],
+                                    ntYearlyList[7],
+                                    ntYearlyList[8],
+                                    ntYearlyList[9],
+                                    ntYearlyList[10],
+                                    ntYearlyList[11],
+                                    ntYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
+                            }],
 
-                    function drawNt() {
-                        var button = document.getElementById('show-chart-nt');
-                        var chartDiv = document.getElementById('chart_div_nt');
-                        var data = google.visualization.arrayToDataTable([
-                            ['Months', 'Number visitors'],
-                            ['01', parseInt(ntYearlyList[1])],
-                            ['02', parseInt(ntYearlyList[2])],
-                            ['03', parseInt(ntYearlyList[3])],
-                            ['04', parseInt(ntYearlyList[4])],
-                            ['05', parseInt(ntYearlyList[5])],
-                            ['06', parseInt(ntYearlyList[6])],
-                            ['07', parseInt(ntYearlyList[7])],
-                            ['08', parseInt(ntYearlyList[8])],
-                            ['09', parseInt(ntYearlyList[9])],
-                            ['10', parseInt(ntYearlyList[10])],
-                            ['11', parseInt(ntYearlyList[11])],
-                            ['12', parseInt(ntYearlyList[12])]
-                        ]);
-
-                        var emptyOptions = {
-                            width: 900,
-                            chart: {
-                                title: 'Total number of visitors for each month in: ' + ntYearlyList[0],
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + ntYearlyList[0]
                             },
-
-                            series: {
-                                0: {axis: 'distance'},
-                            },
-                            axes: {
-                                y: {
-                                    distance: {label: 'Number visitors'},
-                                }
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }],
                             }
-                        };
-
-                        function drawEmptyChart() {
-                            var emptyChart = new google.charts.Bar(chartDiv);
-                            emptyChart.draw(data, google.charts.Bar.convertOptions(emptyOptions));
-                            button.onclick = drawEmptyChart;
                         }
-                        drawEmptyChart();
-                    }
+                    });
 
-                 </script>
-                <div id="chart_div_nt" style="width: 800px; height: 500px;"></div>
+                </script>
             </div>
         </div>
     </div>
@@ -225,6 +232,7 @@
                                 th:value="${year}"></option>
                     </select>
                     <button id="show-chart-qld">Choose year</button>
+                    <canvas height="500" id="qldChart" width="500"></canvas>
                 </form>
 
                 <script th:inline="javascript">
@@ -232,56 +240,60 @@
                     var qldYearlyList = [[${qldYearlyList}]];
                     /*]]>*/
                 </script>
-                <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                    google.charts.load('current', {'packages': ['corechart', 'bar']});
-                    google.charts.setOnLoadCallback(drawQld);
+                <script>
+                    var ctx = document.getElementById('qldChart').getContext('2d');
+                    ctx.canvas.width  = 400;
+                    ctx.canvas.height = 400;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [qldYearlyList[1],
+                                    qldYearlyList[2],
+                                    qldYearlyList[3],
+                                    qldYearlyList[4],
+                                    qldYearlyList[5],
+                                    qldYearlyList[6],
+                                    qldYearlyList[7],
+                                    qldYearlyList[8],
+                                    qldYearlyList[9],
+                                    qldYearlyList[10],
+                                    qldYearlyList[11],
+                                    qldYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
+                            }],
 
-                    function drawQld() {
-                        var button = document.getElementById('show-chart-qld');
-                        var chartDiv = document.getElementById('chart_div_qld');
-                        var data = google.visualization.arrayToDataTable([
-                            ['Months', 'Number visitors'],
-                            ['01', parseInt(qldYearlyList[1])],
-                            ['02', parseInt(qldYearlyList[2])],
-                            ['03', parseInt(qldYearlyList[3])],
-                            ['04', parseInt(qldYearlyList[4])],
-                            ['05', parseInt(qldYearlyList[5])],
-                            ['06', parseInt(qldYearlyList[6])],
-                            ['07', parseInt(qldYearlyList[7])],
-                            ['08', parseInt(qldYearlyList[8])],
-                            ['09', parseInt(qldYearlyList[9])],
-                            ['10', parseInt(qldYearlyList[10])],
-                            ['11', parseInt(qldYearlyList[11])],
-                            ['12', parseInt(qldYearlyList[12])]
-                        ]);
-
-                        var emptyOptions = {
-                            width: 900,
-                            chart: {
-                                title: 'Total number of visitors for each month in: ' + qldYearlyList[0],
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + qldYearlyList[0]
                             },
-
-                            series: {
-                                0: {axis: 'distance'},
-                            },
-                            axes: {
-                                y: {
-                                    distance: {label: 'Number visitors'},
-                                }
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }],
                             }
-                        };
-
-                        function drawEmptyChart() {
-                            var emptyChart = new google.charts.Bar(chartDiv);
-                            emptyChart.draw(data, google.charts.Bar.convertOptions(emptyOptions));
-                            button.onclick = drawEmptyChart;
                         }
-                        drawEmptyChart();
-                    }
+                    });
 
                 </script>
-                <div id="chart_div_qld" style="width: 800px; height: 500px;"></div>
             </div>
         </div>
     </div>
@@ -320,6 +332,7 @@
                                 th:value="${year}"></option>
                     </select>
                     <button id="show-chart-nsw">Choose year</button>
+                    <canvas height="500" id="nswChart" width="500"></canvas>
                 </form>
 
                 <script th:inline="javascript">
@@ -327,56 +340,61 @@
                     var nswYearlyList = [[${nswYearlyList}]];
                     /*]]>*/
                 </script>
-                <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                    google.charts.load('current', {'packages': ['corechart', 'bar']});
-                    google.charts.setOnLoadCallback(drawNsw);
+                <script>
+                    var ctx = document.getElementById('nswChart').getContext('2d');
+                    ctx.canvas.width  = 400;
+                    ctx.canvas.height = 400;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [nswYearlyList[1],
+                                    nswYearlyList[2],
+                                    nswYearlyList[3],
+                                    nswYearlyList[4],
+                                    nswYearlyList[5],
+                                    nswYearlyList[6],
+                                    nswYearlyList[7],
+                                    nswYearlyList[8],
+                                    nswYearlyList[9],
+                                    nswYearlyList[10],
+                                    nswYearlyList[11],
+                                    nswYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
+                            }],
 
-                    function drawNsw() {
-                        var button = document.getElementById('show-chart-nsw');
-                        var chartDiv = document.getElementById('chart_div_nsw');
-                        var data = google.visualization.arrayToDataTable([
-                            ['Months', 'Number visitors'],
-                            ['01', parseInt(nswYearlyList[1])],
-                            ['02', parseInt(nswYearlyList[2])],
-                            ['03', parseInt(nswYearlyList[3])],
-                            ['04', parseInt(nswYearlyList[4])],
-                            ['05', parseInt(nswYearlyList[5])],
-                            ['06', parseInt(nswYearlyList[6])],
-                            ['07', parseInt(nswYearlyList[7])],
-                            ['08', parseInt(nswYearlyList[8])],
-                            ['09', parseInt(nswYearlyList[9])],
-                            ['10', parseInt(nswYearlyList[10])],
-                            ['11', parseInt(nswYearlyList[11])],
-                            ['12', parseInt(nswYearlyList[12])]
-                        ]);
-
-                        var emptyOptions = {
-                            width: 900,
-                            chart: {
-                                title: 'Total number of visitors for each month in: ' + nswYearlyList[0],
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + nswYearlyList[0]
                             },
-
-                            series: {
-                                0: {axis: 'distance'},
-                            },
-                            axes: {
-                                y: {
-                                    distance: {label: 'Number visitors'},
-                                }
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }]
                             }
-                        };
-
-                        function drawEmptyChart() {
-                            var emptyChart = new google.charts.Bar(chartDiv);
-                            emptyChart.draw(data, google.charts.Bar.convertOptions(emptyOptions));
-                            button.onclick = drawEmptyChart;
                         }
-                        drawEmptyChart();
-                    }
+                    });
 
                 </script>
-                <div id="chart_div_nsw" style="width: 800px; height: 500px;"></div>
+
             </div>
         </div>
     </div>
@@ -398,6 +416,7 @@
                                 th:value="${month}"></option>
                     </select>
                     <input type="submit" value="Show Info"/>
+
                 </form>
             </div>
 
@@ -415,6 +434,7 @@
                                 th:value="${year}"></option>
                     </select>
                     <button id="show-chart-act">Choose year</button>
+                    <canvas height="500" id="actChart" width="500"></canvas>
                 </form>
 
                 <script th:inline="javascript">
@@ -422,56 +442,60 @@
                     var actYearlyList = [[${actYearlyList}]];
                     /*]]>*/
                 </script>
-                <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                    google.charts.load('current', {'packages': ['corechart', 'bar']});
-                    google.charts.setOnLoadCallback(drawAct);
+                <script>
+                    var ctx = document.getElementById('actChart').getContext('2d');
+                    ctx.canvas.width  = 400;
+                    ctx.canvas.height = 400;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [actYearlyList[1],
+                                    actYearlyList[2],
+                                    actYearlyList[3],
+                                    actYearlyList[4],
+                                    actYearlyList[5],
+                                    actYearlyList[6],
+                                    actYearlyList[7],
+                                    actYearlyList[8],
+                                    actYearlyList[9],
+                                    actYearlyList[10],
+                                    actYearlyList[11],
+                                    actYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
+                            }],
 
-                    function drawAct() {
-                        var button = document.getElementById('show-chart-act');
-                        var chartDiv = document.getElementById('chart_div_act');
-                        var data = google.visualization.arrayToDataTable([
-                            ['Months', 'Number visitors'],
-                            ['01', parseInt(actYearlyList[1])],
-                            ['02', parseInt(actYearlyList[2])],
-                            ['03', parseInt(actYearlyList[3])],
-                            ['04', parseInt(actYearlyList[4])],
-                            ['05', parseInt(actYearlyList[5])],
-                            ['06', parseInt(actYearlyList[6])],
-                            ['07', parseInt(actYearlyList[7])],
-                            ['08', parseInt(actYearlyList[8])],
-                            ['09', parseInt(actYearlyList[9])],
-                            ['10', parseInt(actYearlyList[10])],
-                            ['11', parseInt(actYearlyList[11])],
-                            ['12', parseInt(actYearlyList[12])]
-                        ]);
-
-                        var emptyOptions = {
-                            width: 900,
-                            chart: {
-                                title: 'Total number of visitors for each month in: ' + actYearlyList[0],
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + actYearlyList[0]
                             },
-
-                            series: {
-                                0: {axis: 'distance'},
-                            },
-                            axes: {
-                                y: {
-                                    distance: {label: 'Number visitors'},
-                                }
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }]
                             }
-                        };
-
-                        function drawEmptyChart() {
-                            var emptyChart = new google.charts.Bar(chartDiv);
-                            emptyChart.draw(data, google.charts.Bar.convertOptions(emptyOptions));
-                            button.onclick = drawEmptyChart;
                         }
-                        drawEmptyChart();
-                    }
+                    });
 
                 </script>
-                <div id="chart_div_act" style="width: 800px; height: 500px;"></div>
 
             </div>
         </div>
@@ -512,63 +536,68 @@
                                 th:value="${year}"></option>
                     </select>
                     <button id="show-chart-vic">Choose year</button>
+                    <canvas height="500" id="vicChart" width="500"></canvas>
                 </form>
 
-                    <script th:inline="javascript">
-                        /*<![CDATA[*/
-                        var vicYearlyList = [[${vicYearlyList}]];
-                        /*]]>*/
-                    </script>
-                    <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-                    <script type="text/javascript">
-                        google.charts.load('current', {'packages': ['corechart', 'bar']});
-                        google.charts.setOnLoadCallback(drawVic);
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    var vicYearlyList = [[${vicYearlyList}]];
+                    /*]]>*/
+                </script>
+                <script>
+                    var ctx = document.getElementById('vicChart').getContext('2d');
+                    ctx.canvas.width  = 400;
+                    ctx.canvas.height = 400;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [vicYearlyList[1],
+                                    vicYearlyList[2],
+                                    vicYearlyList[3],
+                                    vicYearlyList[4],
+                                    vicYearlyList[5],
+                                    vicYearlyList[6],
+                                    vicYearlyList[7],
+                                    vicYearlyList[8],
+                                    vicYearlyList[9],
+                                    vicYearlyList[10],
+                                    vicYearlyList[11],
+                                    vicYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
+                            }],
 
-                        function drawVic() {
-                            var button = document.getElementById('show-chart-vic');
-                            var chartDiv = document.getElementById('chart_div_vic');
-                            var data = google.visualization.arrayToDataTable([
-                                ['Months', 'Number visitors'],
-                                ['01', parseInt(vicYearlyList[1])],
-                                ['02', parseInt(vicYearlyList[2])],
-                                ['03', parseInt(vicYearlyList[3])],
-                                ['04', parseInt(vicYearlyList[4])],
-                                ['05', parseInt(vicYearlyList[5])],
-                                ['06', parseInt(vicYearlyList[6])],
-                                ['07', parseInt(vicYearlyList[7])],
-                                ['08', parseInt(vicYearlyList[8])],
-                                ['09', parseInt(vicYearlyList[9])],
-                                ['10', parseInt(vicYearlyList[10])],
-                                ['11', parseInt(vicYearlyList[11])],
-                                ['12', parseInt(vicYearlyList[12])]
-                            ]);
-
-                            var emptyOptions = {
-                                width: 900,
-                                chart: {
-                                    title: 'Total number of visitors for each month in: ' + vicYearlyList[0],
-                                },
-
-                                series: {
-                                    0: {axis: 'distance'},
-                                },
-                                axes: {
-                                    y: {
-                                        distance: {label: 'Number visitors'},
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + vicYearlyList[0]
+                            },
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
                                     }
-                                }
-                            };
-
-                            function drawEmptyChart() {
-                                var emptyChart = new google.charts.Bar(chartDiv);
-                                emptyChart.draw(data, google.charts.Bar.convertOptions(emptyOptions));
-                                button.onclick = drawEmptyChart;
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }]
                             }
-                            drawEmptyChart();
                         }
+                    });
 
-                    </script>
-                    <div id="chart_div_vic" style="width: 800px; height: 500px;"></div>
+                </script>
             </div>
         </div>
     </div>
@@ -607,63 +636,68 @@
                             th:value="${year}"></option>
                 </select>
                 <button id="show-chart-sa">Choose year</button>
+                <canvas height="500" id="saChart" width="500"></canvas>
             </form>
 
             <script th:inline="javascript">
-            /*<![CDATA[*/
-            var saYearlyList = [[${saYearlyList}]];
-            /*]]>*/
-        </script>
-            <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-            <script type="text/javascript">
-                google.charts.load('current', {'packages': ['corechart', 'bar']});
-                google.charts.setOnLoadCallback(drawSa);
+                /*<![CDATA[*/
+                var saYearlyList = [[${saYearlyList}]];
+                /*]]>*/
+            </script>
+            <script>
+                var ctx = document.getElementById('saChart').getContext('2d');
+                ctx.canvas.width  = 400;
+                ctx.canvas.height = 400;
+                var totalVisitorsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                        datasets: [{
+                            label: 'Number of Visitors',
+                            data: [saYearlyList[1],
+                                saYearlyList[2],
+                                saYearlyList[3],
+                                saYearlyList[4],
+                                saYearlyList[5],
+                                saYearlyList[6],
+                                saYearlyList[7],
+                                saYearlyList[8],
+                                saYearlyList[9],
+                                saYearlyList[10],
+                                saYearlyList[11],
+                                saYearlyList[12]],
+                            backgroundColor: '#9FBBDC',
+                            borderWidth: 1,
+                            borderColor: '#777',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#000'
+                        }],
 
-                function drawSa() {
-                    var button = document.getElementById('show-chart-sa');
-                    var chartDiv = document.getElementById('chart_div_sa');
-                    var data = google.visualization.arrayToDataTable([
-                        ['Months', 'Number visitors'],
-                        ['01', parseInt(saYearlyList[1])],
-                        ['02', parseInt(saYearlyList[2])],
-                        ['03', parseInt(saYearlyList[3])],
-                        ['04', parseInt(saYearlyList[4])],
-                        ['05', parseInt(saYearlyList[5])],
-                        ['06', parseInt(saYearlyList[6])],
-                        ['07', parseInt(saYearlyList[7])],
-                        ['08', parseInt(saYearlyList[8])],
-                        ['09', parseInt(saYearlyList[9])],
-                        ['10', parseInt(saYearlyList[10])],
-                        ['11', parseInt(saYearlyList[11])],
-                        ['12', parseInt(saYearlyList[12])]
-                    ]);
-
-                    var emptyOptions = {
-                        width: 900,
-                        chart: {
-                            title: 'Total number of visitors for each month in: ' + saYearlyList[0],
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Number of visitors per month in: ' + saYearlyList[0]
                         },
-
-                        series: {
-                            0: {axis: 'distance'},
-                        },
-                        axes: {
-                            y: {
-                                distance: {label: 'Number visitors'},
-                            }
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Number of Visitors'
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Months'
+                                }
+                            }]
                         }
-                    };
-
-                    function drawEmptyChart() {
-                        var emptyChart = new google.charts.Bar(chartDiv);
-                        emptyChart.draw(data, google.charts.Bar.convertOptions(emptyOptions));
-                        button.onclick = drawEmptyChart;
                     }
-                    drawEmptyChart();
-                }
+                });
 
             </script>
-            <div id="chart_div_sa" style="width: 800px; height: 500px;"></div>
         </div>
     </div>
 </div>
@@ -700,6 +734,7 @@
                                 th:value="${year}"></option>
                     </select>
                     <button id="show-chart-wa">Choose year</button>
+                    <canvas height="500" id="waChart" width="500"></canvas>
                 </form>
 
                 <script th:inline="javascript">
@@ -707,56 +742,60 @@
                     var waYearlyList = [[${waYearlyList}]];
                     /*]]>*/
                 </script>
-                <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                    google.charts.load('current', {'packages': ['corechart', 'bar']});
-                    google.charts.setOnLoadCallback(drawWa);
+                <script>
+                    var ctx = document.getElementById('waChart').getContext('2d');
+                    ctx.canvas.width  = 400;
+                    ctx.canvas.height = 400;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [waYearlyList[1],
+                                    waYearlyList[2],
+                                    waYearlyList[3],
+                                    waYearlyList[4],
+                                    waYearlyList[5],
+                                    waYearlyList[6],
+                                    waYearlyList[7],
+                                    waYearlyList[8],
+                                    waYearlyList[9],
+                                    waYearlyList[10],
+                                    waYearlyList[11],
+                                    waYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
+                            }],
 
-                    function drawWa() {
-                        var button = document.getElementById('show-chart-wa');
-                        var chartDiv = document.getElementById('chart_div_wa');
-                        var data = google.visualization.arrayToDataTable([
-                            ['Months', 'Number visitors'],
-                            ['01', parseInt(waYearlyList[1])],
-                            ['02', parseInt(waYearlyList[2])],
-                            ['03', parseInt(waYearlyList[3])],
-                            ['04', parseInt(waYearlyList[4])],
-                            ['05', parseInt(waYearlyList[5])],
-                            ['06', parseInt(waYearlyList[6])],
-                            ['07', parseInt(waYearlyList[7])],
-                            ['08', parseInt(waYearlyList[8])],
-                            ['09', parseInt(waYearlyList[9])],
-                            ['10', parseInt(waYearlyList[10])],
-                            ['11', parseInt(waYearlyList[11])],
-                            ['12', parseInt(waYearlyList[12])]
-                        ]);
-
-                        var emptyOptions = {
-                            width: 900,
-                            chart: {
-                                title: 'Total number of visitors for each month in: ' + waYearlyList[0],
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + waYearlyList[0]
                             },
-
-                            series: {
-                                0: {axis: 'distance'},
-                            },
-                            axes: {
-                                y: {
-                                    distance: {label: 'Number visitors'},
-                                }
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }]
                             }
-                        };
-
-                        function drawEmptyChart() {
-                            var emptyChart = new google.charts.Bar(chartDiv);
-                            emptyChart.draw(data, google.charts.Bar.convertOptions(emptyOptions));
-                            button.onclick = drawEmptyChart;
                         }
-                        drawEmptyChart();
-                    }
+                    });
 
                 </script>
-                <div id="chart_div_wa" style="width: 800px; height: 500px;"></div>
             </div>
         </div>
     </div>
@@ -794,8 +833,68 @@
                                 th:value="${year}"></option>
                     </select>
                     <button id="show-chart-tas">Choose year</button>
+                    <canvas height="500" id="tasChart" width="500"></canvas>
                 </form>
 
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    var tasYearlyList = [[${tasYearlyList}]];
+                    /*]]>*/
+                </script>
+                <script>
+                    var ctx = document.getElementById('tasChart').getContext('2d');
+                    ctx.canvas.width  = 400;
+                    ctx.canvas.height = 400;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [tasYearlyList[1],
+                                    tasYearlyList[2],
+                                    tasYearlyList[3],
+                                    tasYearlyList[4],
+                                    tasYearlyList[5],
+                                    tasYearlyList[6],
+                                    tasYearlyList[7],
+                                    tasYearlyList[8],
+                                    tasYearlyList[9],
+                                    tasYearlyList[10],
+                                    tasYearlyList[11],
+                                    tasYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
+                            }],
+
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + tasYearlyList[0]
+                            },
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }]
+                            }
+                        }
+                    });
+
+                </script>
             </div>
         </div>
     </div>
