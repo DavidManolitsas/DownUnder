@@ -18,7 +18,6 @@ public class TravelInfo {
     private String[] yearlyList = new String[13];
 
 
-
     public TravelInfo(String stateCapitalCity) {
         this.stateCapitalCity = stateCapitalCity;
     }
@@ -76,23 +75,21 @@ public class TravelInfo {
 
     public void getStateYearlyVisitors() {
         BigQuery query = new BigQuery();
-//        String[] yearArray = new String[12];
-        System.out.println("hello#####################");
+//        System.out.println("hello#####################");
         try {
             List<String> results = query.queryYearTotal(stateName, travelYear);
-            System.out.println("results list size: " + results.size());
+//            System.out.println("results list size: " + results.size());
             yearlyList = new String[results.size()];
             yearlyList = results.toArray(yearlyList);
-            System.out.println("year array size: " + yearlyList.length);
-           for (String i: yearlyList) {
-               System.out.println(i);
-           }
+//            System.out.println("year array size: " + yearlyList.length);
+//           for (String i: yearlyList) {
+//               System.out.println(i);
+//           }
             this.yearlyList = yearlyList;
-            System.out.println("i dunno why");
+//            System.out.println("i dunno why");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
 
     }
 
