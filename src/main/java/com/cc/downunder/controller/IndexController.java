@@ -33,27 +33,35 @@ public class IndexController {
         //Northern Territory
         model.addAttribute("northernTerritory", generator.getNt());
         model.addAttribute("ntTravelInfo", generator.getNt().getTravelInfo());
+        model.addAttribute("ntYearlyList", generator.getNt().getTravelInfo().getYearlyList());
         //Queensland
         model.addAttribute("queensland", generator.getQld());
         model.addAttribute("qldTravelInfo", generator.getQld().getTravelInfo());
+        model.addAttribute("qldYearlyList", generator.getQld().getTravelInfo().getYearlyList());
         //New South Wales
         model.addAttribute("newSouthWales", generator.getNsw());
         model.addAttribute("nswTravelInfo", generator.getNsw().getTravelInfo());
+        model.addAttribute("nswYearlyList", generator.getNsw().getTravelInfo().getYearlyList());
         //Australian Capital Territory
         model.addAttribute("australianCapitalTerritory", generator.getAct());
         model.addAttribute("actTravelInfo", generator.getAct().getTravelInfo());
+        model.addAttribute("actYearlyList", generator.getAct().getTravelInfo().getYearlyList());
         //Victoria
         model.addAttribute("victoria", generator.getVic());
         model.addAttribute("vicTravelInfo", generator.getVic().getTravelInfo());
+        model.addAttribute("vicYearlyList", generator.getVic().getTravelInfo().getYearlyList());
         //Tasmania
         model.addAttribute("tasmania", generator.getTas());
         model.addAttribute("tasTravelInfo", generator.getTas().getTravelInfo());
+        model.addAttribute("tasYearlyList", generator.getTas().getTravelInfo().getYearlyList());
         //South Australia
         model.addAttribute("southAustralia", generator.getSa());
         model.addAttribute("saTravelInfo", generator.getSa().getTravelInfo());
+        model.addAttribute("saYearlyList", generator.getSa().getTravelInfo().getYearlyList());
         //Western Australia
         model.addAttribute("westernAustralia", generator.getWa());
         model.addAttribute("waTravelInfo", generator.getWa().getTravelInfo());
+        model.addAttribute("waYearlyList", generator.getWa().getTravelInfo().getYearlyList());
 
         model.addAttribute("languageFilter", languageFilter);
         //add the month enum
@@ -65,16 +73,8 @@ public class IndexController {
 
         model.addAttribute("years", year.getYearList());
 
-        model.addAttribute("ntYearlyList", generator.getNt().getTravelInfo().getYearlyList());
-
         //template name not the file name (i.e no .html)
         return "index";
-    }
-
-    @RequestMapping(value = "", params = "ntYear", method = RequestMethod.POST)
-    public String setYear(@RequestParam String travelYear, Model model){
-        generator.getNt().getTravelInfo().setTravelYear(travelYear);
-        return "redirect:#NT";
     }
 
     @RequestMapping(value = "", params = "lang", method = RequestMethod.POST)
@@ -95,9 +95,21 @@ public class IndexController {
         return "redirect:#NT";
     }
 
+    @RequestMapping(value = "", params = "ntYear", method = RequestMethod.POST)
+    public String setNtYear(@RequestParam String travelYear){
+        generator.getNt().getTravelInfo().setTravelYear(travelYear);
+        return "redirect:#NT";
+    }
+
     @RequestMapping(value = "", params = "qld", method = RequestMethod.POST)
     public String displayQldTravelInfo(@RequestParam Month travelMonth) {
         generator.getQld().getTravelInfo().setTravelMonth(travelMonth);
+        return "redirect:#QLD";
+    }
+
+    @RequestMapping(value = "", params = "qldYear", method = RequestMethod.POST)
+    public String setQldYear(@RequestParam String travelYear){
+        generator.getQld().getTravelInfo().setTravelYear(travelYear);
         return "redirect:#QLD";
     }
 
@@ -107,9 +119,21 @@ public class IndexController {
         return "redirect:#NSW";
     }
 
+    @RequestMapping(value = "", params = "nswYear", method = RequestMethod.POST)
+    public String setNswYear(@RequestParam String travelYear){
+        generator.getNsw().getTravelInfo().setTravelYear(travelYear);
+        return "redirect:#NSW";
+    }
+
     @RequestMapping(value = "", params = "act", method = RequestMethod.POST)
     public String displayActTravelInfo(@RequestParam Month travelMonth) {
         generator.getAct().getTravelInfo().setTravelMonth(travelMonth);
+        return "redirect:#ACT";
+    }
+
+    @RequestMapping(value = "", params = "actYear", method = RequestMethod.POST)
+    public String setActYear(@RequestParam String travelYear){
+        generator.getAct().getTravelInfo().setTravelYear(travelYear);
         return "redirect:#ACT";
     }
 
@@ -119,9 +143,21 @@ public class IndexController {
         return "redirect:#VIC";
     }
 
+    @RequestMapping(value = "", params = "vicYear", method = RequestMethod.POST)
+    public String setVicYear(@RequestParam String travelYear){
+        generator.getVic().getTravelInfo().setTravelYear(travelYear);
+        return "redirect:#VIC";
+    }
+
     @RequestMapping(value = "", params = "tas", method = RequestMethod.POST)
     public String displayTasTravelInfo(@RequestParam Month travelMonth) {
         generator.getTas().getTravelInfo().setTravelMonth(travelMonth);
+        return "redirect:#TAS";
+    }
+
+    @RequestMapping(value = "", params = "tasYear", method = RequestMethod.POST)
+    public String setTasYear(@RequestParam String travelYear){
+        generator.getTas().getTravelInfo().setTravelYear(travelYear);
         return "redirect:#TAS";
     }
 
@@ -131,9 +167,21 @@ public class IndexController {
         return "redirect:#SA";
     }
 
+    @RequestMapping(value = "", params = "saYear", method = RequestMethod.POST)
+    public String setSaYear(@RequestParam String travelYear){
+        generator.getSa().getTravelInfo().setTravelYear(travelYear);
+        return "redirect:#SA";
+    }
+
     @RequestMapping(value = "", params = "wa", method = RequestMethod.POST)
     public String displayWaTravelInfo(@RequestParam Month travelMonth) {
         generator.getWa().getTravelInfo().setTravelMonth(travelMonth);
+        return "redirect:#WA";
+    }
+
+    @RequestMapping(value = "", params = "waYear", method = RequestMethod.POST)
+    public String setWaYear(@RequestParam String travelYear){
+        generator.getWa().getTravelInfo().setTravelYear(travelYear);
         return "redirect:#WA";
     }
 
