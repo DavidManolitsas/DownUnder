@@ -7,9 +7,7 @@ import com.google.cloud.vision.v1.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +33,25 @@ public class DetectLandmark {
 
         String gcsPath = "gs://" + GoogleCloudAccount.VISION_BUCKET_NAME + "/" + file.getOriginalFilename();
         analyseImage(gcsPath);
+        deleteFile(filePath);
+    }
+    public void deleteFile(String filePath) {
+        try {
+            Files.deleteIfExists(Paths.get(filePath));
+        }  catch(NoSuchFileException e)
+        {
+            System.out.println("No such file/directory exists");
+        }
+        catch(DirectoryNotEmptyException e)
+        {
+            System.out.println("Directory is not empty.");
+        }
+        catch(IOException e)
+        {
+            System.out.println("Invalid permissions.");
+        }
 
+        System.out.println("Deletion successful.");
     }
 
     public void analyseImage(String gcsPath) {

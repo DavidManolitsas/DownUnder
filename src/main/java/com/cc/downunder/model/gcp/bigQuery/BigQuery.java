@@ -76,6 +76,7 @@ public class BigQuery {
                 + "WHERE stateCol.name = '" + state + "' "
                 + "AND rowkey LIKE '%" + mm + "'  AND rowkey LIKE '20%'";
 
+
         String tableName = "averageMonthlyTable";
 //        String result = queryTable(query, "australia", tableName);
         query(query, "australia", tableName);
@@ -89,7 +90,8 @@ public class BigQuery {
                 + "FROM australia.visitors, "
                 + "UNNEST(state.column) AS stateCol, UNNEST(stateCol.cell) AS stateCell "
                 + "WHERE stateCol.name = '" + state + "' "
-                + "AND rowkey LIKE '" + yyyy + "%'";
+                + "AND rowkey LIKE '" + yyyy + "%' "
+                + "ORDER BY rowkey asc";
 
         String tableName = "totalYearTable";
         query(query, "australia", tableName);
