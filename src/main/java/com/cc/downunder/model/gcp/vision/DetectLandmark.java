@@ -11,6 +11,13 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author: Jessica Cui
+ * @date: 2020/05/23
+ * @project: Down under
+ * IEEE reference: [14]
+ */
+
 public class DetectLandmark {
 
     private StringBuilder landmarkLocation;

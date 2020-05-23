@@ -7,26 +7,15 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author: Jessica Cui
+ * @date: 2020/05/23
+ * @project: Down under
+ * IEEE reference: [10]
+ */
 public class BigQuery {
     private com.google.cloud.bigquery.BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
     private List<String> resultsList = new ArrayList<>();
-
-//    public String queryTable(String query, String destinationDataset, String destinationTable) throws InterruptedException {
-//        QueryJobConfiguration queryConfig =
-//                QueryJobConfiguration.newBuilder(query)
-//                        // Save the results of the query to a permanent table.
-//                        .setDestinationTable(TableId.of(destinationDataset, destinationTable))
-//                        .build();
-//
-//        // TODO refactor the loop
-//        for (FieldValueList row : bigquery.query(queryConfig).iterateAll()) {
-//            for (FieldValue val : row) {
-//                resultsList.add(val.toString())
-//            }
-//        }
-//
-//        return " ";
-//    }
 
     public void query(String query, String destinationDataset, String destinationTable) throws InterruptedException {
         QueryJobConfiguration queryConfig =

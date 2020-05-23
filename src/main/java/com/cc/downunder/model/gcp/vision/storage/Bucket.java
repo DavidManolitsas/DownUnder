@@ -9,8 +9,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- *
+ * @author: Jessica Cui
+ * @date: 2020/05/23
+ * @project: Down under
+ * IEEE reference: [12]
  */
+
 public class Bucket {
 
     public void uploadObject(

@@ -4,6 +4,7 @@ package com.cc.downunder.model.gcp.bigTable;
  * @Author: Jessica Cui
  * @Project: Cloud Computing
  * @Date: 2020/05/02
+ * IEEE reference: [16]
  */
 
 import com.google.api.gax.rpc.NotFoundException;
@@ -21,7 +22,6 @@ import com.google.cloud.bigtable.data.v2.models.RowMutation;
 import java.io.IOException;
 import java.util.Map;
 
-// https://github.com/GoogleCloudPlatform/java-docs-samples/blob/master/bigtable/src/main/java/com/m/examples/bigtable/HelloWorld.java
 public class BigTable {
     private final String tableId;
     private final BigtableDataClient dataClient;

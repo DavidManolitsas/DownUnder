@@ -6,14 +6,12 @@ import com.google.cloud.datastore.Key;
 import com.google.cloud.datastore.KeyFactory;
 
 /**
- * @author Jessica Cui
- * @project downunder
- * @date 2020-04-30
+ * @author: Jessica Cui
+ * @project: Cloud Computing
+ * @date: 2020/05/02
+ * IEEE reference: [11]
  */
 
-/**
- * A snippet for Google Cloud Datastore showing how to create an entity.
- */
 public class Datastore {
     com.google.cloud.datastore.Datastore datastore;
     String key, capital;
