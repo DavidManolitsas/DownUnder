@@ -6,6 +6,7 @@ import com.cc.downunder.model.StateTerritoryGenerator;
 import com.cc.downunder.model.Year;
 import com.cc.downunder.model.gcp.translate.Language;
 import com.cc.downunder.model.gcp.vision.DetectLandmark;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2020-04-27
  */
 @Controller
+@RequestMapping
 public class IndexController {
 
     // States and Territories

@@ -13,7 +13,6 @@
     <H1>Down Under</H1>
 </div>
 
-
 <div class="info">
     <h2 th:text="${languageFilter.getHeading()}"></h2>
     <div class="lang">
@@ -36,7 +35,7 @@
             <input accept="image/*" id="imageFile" name="imageFile" type="file"/>
             <input type="submit" value="Upload"/>
         </form>
-        <p th:text="*{detectLandmark.getImageLocationDescription()}"></p>
+        <p th:text="${detectLandmark.getImageLocationDescription()}"></p>
     </div>
     <!--Region End-->
 </div>
@@ -107,7 +106,7 @@
 
             <div class="month-chooser">
                 <form action="?nt" method="post" th:object="${ntTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
+                    <label th:for="travelMonth" th:text="${languageFilter.getSelectMonth()}"></label>
                     <select th:field="*{travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"
@@ -209,7 +208,7 @@
 
             <div class="month-chooser">
                 <form action="?qld" method="post" th:object="${qldTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
+                    <label th:for="travelMonth" th:text="${languageFilter.getSelectMonth()}"></label>
                     <select th:field="*{travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"
@@ -308,8 +307,8 @@
 
             <div class="month-chooser">
                 <form action="?nsw" method="post" th:object="${nswTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
-                    <select th:field="*{travelMonth}">
+                    <label th:for="travelMonth" th:utext="${languageFilter.getSelectMonth()}"></label>
+                    <select th:field="${nswTravelInfo.travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"
                                 th:value="${month}"></option>
@@ -409,7 +408,7 @@
 
             <div class="month-chooser">
                 <form action="?act" method="post" th:object="${actTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
+                    <label th:for="travelMonth" th:text="${languageFilter.getSelectMonth()}"></label>
                     <select th:field="*{travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"
@@ -512,7 +511,7 @@
 
             <div class="month-chooser">
                 <form action="?vic" method="post" th:object="${vicTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
+                    <label th:for="travelMonth" th:text="${languageFilter.getSelectMonth()}"></label>
                     <select th:field="*{travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"
@@ -612,7 +611,7 @@
 
             <div class="month-chooser">
                 <form action="?sa" method="post" th:object="${saTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
+                    <label th:for="travelMonth" th:text="${languageFilter.getSelectMonth()}"></label>
                     <select th:field="*{travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"
@@ -710,7 +709,7 @@
             <img alt="Perth" src="/img/Perth.jpg" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
             <div class="month-chooser">
                 <form action="?wa" method="post" th:object="${waTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
+                    <label th:for="travelMonth" th:text="${languageFilter.getSelectMonth()}"></label>
                     <select th:field="*{travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"
@@ -809,7 +808,7 @@
             <img alt="Hobart" src="/img/Hobart.jpg" style="float:left;padding:0 20px 0 0;width:500px;height:250px;">
             <div class="month-chooser">
                 <form action="?tas" method="post" th:object="${tasTravelInfo}">
-                    <label th:for="travelMonth" th:text="${languageFilter.translateText('Select a Month: ')}"></label>
+                    <label th:for="travelMonth" th:text="${languageFilter.getSelectMonth()}"></label>
                     <select th:field="*{travelMonth}">
                         <option th:each="month : ${months}"
                                 th:text="${month.name}"

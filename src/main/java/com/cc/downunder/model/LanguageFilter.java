@@ -53,6 +53,18 @@ public class LanguageFilter {
         return "";
     }
 
+    public String getSelectMonth() {
+        try {
+            String selectMonth =
+                    "Select a month: ";
+
+            return translator.translateText(language.getCode(), selectMonth);
+        } catch (IOException e) {
+            System.err.println("Translation error");
+        }
+        return "";
+    }
+
     public String translateText(String text) {
         try {
             return translator.translateText(language.getCode(), text);
