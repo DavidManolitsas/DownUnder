@@ -13,6 +13,5 @@ public class NewSouthWales
     public NewSouthWales(String capital, int population) {
         super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "NSW"));
-        createEntity("New South Wales", getCapital(), getPopulation());
     }
 }

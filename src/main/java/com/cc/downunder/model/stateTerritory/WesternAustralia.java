@@ -13,6 +13,5 @@ public class WesternAustralia
     public WesternAustralia(String capital, int population) {
         super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "WA"));
-        createEntity("Western Australia", getCapital(), getPopulation());
     }
 }

@@ -13,7 +13,5 @@ public class SouthAustralia
     public SouthAustralia(String capital, int population) {
         super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "SA"));
-        createEntity("South Australia", getCapital(), getPopulation());
-
     }
 }

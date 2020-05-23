@@ -12,7 +12,6 @@ public class Queensland
 
     public Queensland(String capital, int population) {
         super(capital, population);
-        createEntity("Queensland", getCapital(), getPopulation());
         this.setTravelInfo(new TravelInfo(getCapital(), "QLD"));
     }
 }

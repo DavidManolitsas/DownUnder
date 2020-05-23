@@ -13,7 +13,6 @@ public class AustralianCapitalTerritory
     public AustralianCapitalTerritory(String capital, int population) {
         super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "ACT"));
-        createEntity("Australian Capital Territory", getCapital(), getPopulation());
     }
 
 

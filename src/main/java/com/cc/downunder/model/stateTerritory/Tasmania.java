@@ -13,6 +13,5 @@ public class Tasmania
     public Tasmania(String capital, int population) {
         super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "TAS"));
-        createEntity("Tasmania", getCapital(), getPopulation());
     }
 }

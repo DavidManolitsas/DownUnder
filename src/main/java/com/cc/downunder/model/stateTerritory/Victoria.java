@@ -13,7 +13,6 @@ public class Victoria
     public Victoria(String capital, int population) {
         super(capital, population);
         this.setTravelInfo(new TravelInfo(getCapital(), "VIC"));
-        createEntity("Victoria", getCapital(), getPopulation());
     }
 
 }

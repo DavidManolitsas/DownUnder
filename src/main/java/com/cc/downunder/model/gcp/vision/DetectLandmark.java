@@ -3,11 +3,24 @@ package com.cc.downunder.model.gcp.vision;
 import com.cc.downunder.model.LanguageFilter;
 import com.cc.downunder.model.gcp.GoogleCloudAccount;
 import com.cc.downunder.model.gcp.vision.storage.Bucket;
-import com.google.cloud.vision.v1.*;
+import com.google.cloud.vision.v1.AnnotateImageRequest;
+import com.google.cloud.vision.v1.AnnotateImageResponse;
+import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
+import com.google.cloud.vision.v1.EntityAnnotation;
+import com.google.cloud.vision.v1.Feature;
+import com.google.cloud.vision.v1.Image;
+import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.cloud.vision.v1.ImageSource;
+import com.google.cloud.vision.v1.LocationInfo;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,5 +163,4 @@ public class DetectLandmark {
         // east and west boundary
         else return !(longitude > EAST_LONGITUDE) && !(longitude < WEST_LONGITUDE);
     }
-
 }
