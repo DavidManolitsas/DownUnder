@@ -141,7 +141,7 @@
                 </script>
                 <script>
                     var ctx = document.getElementById('ntChart').getContext('2d');
-                    ctx.canvas.width  = 400;
+                    ctx.canvas.width = 400;
                     ctx.canvas.height = 300;
                     var totalVisitorsChart = new Chart(ctx, {
                         type: 'bar',
@@ -241,7 +241,7 @@
                 </script>
                 <script>
                     var ctx = document.getElementById('qldChart').getContext('2d');
-                    ctx.canvas.width  = 400;
+                    ctx.canvas.width = 400;
                     ctx.canvas.height = 300;
                     var totalVisitorsChart = new Chart(ctx, {
                         type: 'bar',
@@ -341,7 +341,7 @@
                 </script>
                 <script>
                     var ctx = document.getElementById('nswChart').getContext('2d');
-                    ctx.canvas.width  = 400;
+                    ctx.canvas.width = 400;
                     ctx.canvas.height = 300;
                     var totalVisitorsChart = new Chart(ctx, {
                         type: 'bar',
@@ -443,7 +443,7 @@
                 </script>
                 <script>
                     var ctx = document.getElementById('actChart').getContext('2d');
-                    ctx.canvas.width  = 400;
+                    ctx.canvas.width = 400;
                     ctx.canvas.height = 300;
                     var totalVisitorsChart = new Chart(ctx, {
                         type: 'bar',
@@ -545,7 +545,7 @@
                 </script>
                 <script>
                     var ctx = document.getElementById('vicChart').getContext('2d');
-                    ctx.canvas.width  = 400;
+                    ctx.canvas.width = 400;
                     ctx.canvas.height = 300;
                     var totalVisitorsChart = new Chart(ctx, {
                         type: 'bar',
@@ -624,79 +624,80 @@
             <div class="travel-info" th:object="${southAustralia}">
                 <p th:text="*{travelInfo.showTravelInfo()}"></p>
             </div>
-        </div>
-        <div class="year-chooser">
-            <form action="?saYear" method="post" th:object="${saTravelInfo}">
-                <label th:for="travelYear"
-                       th:text="${languageFilter.translateText('Want to see how many visitors in a year? Select a year: ')}"></label>
-                <select th:field="*{travelYear}">
-                    <option th:each="year : ${years}"
-                            th:text="${year}"
-                            th:value="${year}"></option>
-                </select>
-                <button id="show-chart-sa">Choose year</button>
-                <canvas height="500" id="saChart" width="500"></canvas>
-            </form>
 
-            <script th:inline="javascript">
-                /*<![CDATA[*/
-                var saYearlyList = [[${saYearlyList}]];
-                /*]]>*/
-            </script>
-            <script>
-                var ctx = document.getElementById('saChart').getContext('2d');
-                ctx.canvas.width  = 400;
-                ctx.canvas.height = 300;
-                var totalVisitorsChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
-                        datasets: [{
-                            label: 'Number of Visitors',
-                            data: [saYearlyList[1],
-                                saYearlyList[2],
-                                saYearlyList[3],
-                                saYearlyList[4],
-                                saYearlyList[5],
-                                saYearlyList[6],
-                                saYearlyList[7],
-                                saYearlyList[8],
-                                saYearlyList[9],
-                                saYearlyList[10],
-                                saYearlyList[11],
-                                saYearlyList[12]],
-                            backgroundColor: '#9FBBDC',
-                            borderWidth: 1,
-                            borderColor: '#777',
-                            hoverBorderWidth: 2,
-                            hoverBorderColor: '#000'
-                        }],
+            <div class="year-chooser">
+                <form action="?saYear" method="post" th:object="${saTravelInfo}">
+                    <label th:for="travelYear"
+                           th:text="${languageFilter.translateText('Want to see how many visitors in a year? Select a year: ')}"></label>
+                    <select th:field="*{travelYear}">
+                        <option th:each="year : ${years}"
+                                th:text="${year}"
+                                th:value="${year}"></option>
+                    </select>
+                    <button id="show-chart-sa">Choose year</button>
+                    <canvas height="500" id="saChart" width="500"></canvas>
+                </form>
 
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: 'Number of visitors per month in: ' + saYearlyList[0]
-                        },
-                        responsive: false,
-                        scales: {
-                            yAxes: [{
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Number of Visitors'
-                                }
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    var saYearlyList = [[${saYearlyList}]];
+                    /*]]>*/
+                </script>
+                <script>
+                    var ctx = document.getElementById('saChart').getContext('2d');
+                    ctx.canvas.width = 400;
+                    ctx.canvas.height = 300;
+                    var totalVisitorsChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                            datasets: [{
+                                label: 'Number of Visitors',
+                                data: [saYearlyList[1],
+                                    saYearlyList[2],
+                                    saYearlyList[3],
+                                    saYearlyList[4],
+                                    saYearlyList[5],
+                                    saYearlyList[6],
+                                    saYearlyList[7],
+                                    saYearlyList[8],
+                                    saYearlyList[9],
+                                    saYearlyList[10],
+                                    saYearlyList[11],
+                                    saYearlyList[12]],
+                                backgroundColor: '#9FBBDC',
+                                borderWidth: 1,
+                                borderColor: '#777',
+                                hoverBorderWidth: 2,
+                                hoverBorderColor: '#000'
                             }],
-                            xAxes: [{
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Months'
-                                }
-                            }]
-                        }
-                    }
-                });
 
-            </script>
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Number of visitors per month in: ' + saYearlyList[0]
+                            },
+                            responsive: false,
+                            scales: {
+                                yAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Number of Visitors'
+                                    }
+                                }],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Months'
+                                    }
+                                }]
+                            }
+                        }
+                    });
+
+                </script>
+            </div>
         </div>
     </div>
 </div>
@@ -743,7 +744,7 @@
                 </script>
                 <script>
                     var ctx = document.getElementById('waChart').getContext('2d');
-                    ctx.canvas.width  = 400;
+                    ctx.canvas.width = 400;
                     ctx.canvas.height = 300;
                     var totalVisitorsChart = new Chart(ctx, {
                         type: 'bar',
@@ -842,7 +843,7 @@
                 </script>
                 <script>
                     var ctx = document.getElementById('tasChart').getContext('2d');
-                    ctx.canvas.width  = 400;
+                    ctx.canvas.width = 400;
                     ctx.canvas.height = 300;
                     var totalVisitorsChart = new Chart(ctx, {
                         type: 'bar',
