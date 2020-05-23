@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BigQuery {
-    com.google.cloud.bigquery.BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
+    private com.google.cloud.bigquery.BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
     private List<String> resultsList = new ArrayList<>();
 
 //    public String queryTable(String query, String destinationDataset, String destinationTable) throws InterruptedException {
@@ -42,12 +42,6 @@ public class BigQuery {
             }
         }
 
-//        return " ";
-    }
-
-    public String getAverageResult() {
-//        getNumericValue().setScale(0, RoundingMode.UP).toString();
-        return resultsList.get(0);
     }
 
     public void deleteTable(String tableName) {
@@ -78,11 +72,9 @@ public class BigQuery {
 
 
         String tableName = "averageMonthlyTable";
-//        String result = queryTable(query, "australia", tableName);
         query(query, "australia", tableName);
         deleteTable(tableName);
-//        getAverageResult();
-        return getAverageResult();
+        return resultsList.get(0);
     }
 
     public List<String> queryYearTotal(String state, String yyyy) throws InterruptedException {
