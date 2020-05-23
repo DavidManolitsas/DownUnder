@@ -53,9 +53,13 @@ public abstract class StateTerritory {
         this.travelInfo = travelInfo;
     }
 
-    public String getDetails() {
+    public String getCapitalDetails() {
         LanguageFilter filter = LanguageFilter.getInstance();
-        return filter.translateText("Capital City: ") + getCapital() +
-                filter.translateText("Population: " + getPopulation());
+        return filter.translateText("Capital City: ") + getCapital();
+    }
+
+    public String getPopulationDetails() {
+        LanguageFilter filter = LanguageFilter.getInstance();
+        return filter.translateText("Population: " + getPopulation());
     }
 }
